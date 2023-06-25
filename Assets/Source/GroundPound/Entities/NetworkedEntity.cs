@@ -131,19 +131,23 @@ namespace Sky.GroundPound
         /// </remarks>
         public override void FixedUpdateNetwork()
         {
-            IsLocalPlayer = HasStateAuthority;
+            if (GetInput(out GroundPoundInputData InputData))
+            {
+                IsLocalPlayer = true;
 
-            if (!HasStateAuthority) // We don't want other Clients being able to control our Entity
-                return;
-
-            InputTick(out Vector2 TargetVelocity);
-            Velocity = TargetVelocity;
+                InputTick(InputData, out Vector2 TargetVelocity);
+                Velocity = TargetVelocity;
+            }
+            else
+            {
+                IsLocalPlayer = false;
+            }
         }
 
         /// <summary>
         /// Logic to run each Network Update (~10ms like base FixedUpdate)
         /// </summary>
-        protected virtual void InputTick(out Vector2 FinalVelocity)
+        protected virtual void InputTick(GroundPoundInputData InputData, out Vector2 FinalVelocity)
         {
             FinalVelocity = Vector2.zero; // Static object behaviour
         }

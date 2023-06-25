@@ -114,7 +114,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 038d7defd277bee4c9cd720cd303961b, type: 2}
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  m_BaseMoveSpeed: 4
+  m_BaseMoveSpeed: 5
   m_CoyoteTime: 0.1
   m_JumpCurve:
     serializedVersion: 2

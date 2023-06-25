@@ -4,9 +4,21 @@
 
 using UnityEngine;
 using SkySoft;
+using Fusion;
 
 namespace Sky.GroundPound
 {
+    public struct GroundPoundInputData : INetworkInput
+    {
+        public bool Jump => mJump == Player.BUTTON_ON;
+        public bool Dash => mDash == Player.BUTTON_ON;
+        public bool GroundPound => mGroundPound == Player.BUTTON_ON;
+        public bool Bolt => mBolt == Player.BUTTON_ON;
+
+        public byte mJump, mDash, mGroundPound, mBolt;
+        public float Direction;
+    }
+
     public enum PlayerState
     {
         Normal,
@@ -17,6 +29,9 @@ namespace Sky.GroundPound
     [AddComponentMenu("Ground Pound/Player (Networked Entity)")]
     public class Player : NetworkedEntity
     {
+        public const byte BUTTON_ON = 0x01;
+        public const byte BUTTON_OFF = 0x00;
+
         private PlayerState m_State = PlayerState.Normal;
         public static Player LocalPlayer;
 
@@ -56,18 +71,9 @@ namespace Sky.GroundPound
         private float LastGrounded;
         private float LastH;
 
-        private bool DashInput;
         private bool DashRight, DashLeft;
 
-        private void Update()
-        {
-            if (Time.time - LastDash > DashDelay && SkyEngine.Input.Gameplay.Dash.WasPressedThisFrame())
-            {
-                DashInput = true;
-            }
-        }
-
-        protected override void InputTick(out Vector2 FinalVelocity)
+        protected override void InputTick(GroundPoundInputData InputData, out Vector2 FinalVelocity)
         {
             LocalPlayer = this;
 
@@ -78,24 +84,21 @@ namespace Sky.GroundPound
             {
                 m_GroundPoundV = 0;
 
-                Vector2 Input = SkyEngine.Input.Gameplay.Move.ReadValue<Vector2>();
-                Horizontal = m_State == PlayerState.Normal ? Input.x : DashDirection;
-                Jump = SkyEngine.Input.Gameplay.Jump.IsPressed() || Input.y > 0;
+                Horizontal = m_State == PlayerState.Normal ? InputData.Direction : DashDirection;
+                Jump = InputData.Jump;
+
+                bool DashInput = Time.time - LastDash > DashDelay && InputData.Dash;
 
                 if (DashInput)
                 {
                     DashRight = Horizontal > 0;
                     DashLeft = Horizontal < 0;
-                    DashInput = false;
                 }
 
-                if ((int)Horizontal != (int)LastH)
-                {
-                    if (Horizontal < 0)
-                        Facing = false;
-                    if (Horizontal > 0)
-                        Facing = true;
-                }
+                if (Horizontal < 0)
+                    Facing = false;
+                if (Horizontal > 0)
+                    Facing = true;
 
                 bool Grounded = IsGrounded; // This looks odd but it's more efficient to do this because base.IsGrounded actually runs a whole function when it's retrieved
                 bool CanJump = Grounded || Time.time - LastGrounded < m_CoyoteTime;
@@ -159,7 +162,7 @@ namespace Sky.GroundPound
 
                 if (!Grounded)
                 {
-                    if (Input.y < 0)
+                    if (InputData.GroundPound)
                     {
                         RaycastHit2D Hit;
 

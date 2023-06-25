@@ -41,8 +41,11 @@ namespace Sky.GroundPound
 
             Vector3 DesiredPosition = Target.position + Offset;
 
-            DesiredPosition.x = Mathf.Clamp(DesiredPosition.x, GameManager.Instance.CameraMin.x, GameManager.Instance.CameraMax.x);
-            DesiredPosition.y = Mathf.Clamp(DesiredPosition.y, GameManager.Instance.CameraMin.y, GameManager.Instance.CameraMax.y);
+            if (GameManager.Instance)
+            {
+                DesiredPosition.x = Mathf.Clamp(DesiredPosition.x, GameManager.Instance.CameraMin.x, GameManager.Instance.CameraMax.x);
+                DesiredPosition.y = Mathf.Clamp(DesiredPosition.y, GameManager.Instance.CameraMin.y, GameManager.Instance.CameraMax.y);
+            }
 
             Vector3 SmoothedPosition = Vector3.SmoothDamp(transform.position, DesiredPosition, ref Velocity, SmoothSpeed);
             transform.position = SmoothedPosition;

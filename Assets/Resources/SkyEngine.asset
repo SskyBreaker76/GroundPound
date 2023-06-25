@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd682f81463b1b74b8b492285aa52875, type: 3}
   m_Name: SkyEngine
   m_EditorClassIdentifier: 
-  SaveMenu: {fileID: 3581433779591603987, guid: 88e6e422a70d8ff469c00f361a40647f, type: 3}
+  SaveMenu: {fileID: 0}
   EnableSteam: 0
   EnableDiscord: 0
-  DefaultGlyphPack: 0
+  DefaultGlyphPack: 3
   LeftStick: {fileID: 21300000, guid: 6c94aebf21d7dae4e89848c18cc1a9ec, type: 3}
   RightStick: {fileID: 21300000, guid: 72323306cf9535d4eb4313802416213e, type: 3}
   LeftBumper: {fileID: 21300000, guid: 69524de0f8991f84182a7fd6a0be5d4a, type: 3}
