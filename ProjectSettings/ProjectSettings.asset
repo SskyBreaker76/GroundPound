@@ -145,7 +145,7 @@ PlayerSettings:
   isWsaHolographicRemotingEnabled: 0
   enableFrameTimingStats: 0
   enableOpenGLProfilerGPURecorders: 1
-  useHDRDisplay: 0
+  useHDRDisplay: 1
   hdrBitDepth: 0
   m_ColorGamuts: 00000000
   targetPixelDensity: 30
@@ -635,7 +635,22 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: FUSION_WEAVER
+    Android: UNITY_MP_TOOLS_NETSIM_ENABLED_IN_RELEASE
+    EmbeddedLinux: UNITY_MP_TOOLS_NETSIM_ENABLED_IN_RELEASE
+    GameCoreScarlett: UNITY_MP_TOOLS_NETSIM_ENABLED_IN_RELEASE
+    GameCoreXboxOne: UNITY_MP_TOOLS_NETSIM_ENABLED_IN_RELEASE
+    LinuxHeadlessSimulation: UNITY_MP_TOOLS_NETSIM_ENABLED_IN_RELEASE
+    Nintendo Switch: UNITY_MP_TOOLS_NETSIM_ENABLED_IN_RELEASE
+    PS4: UNITY_MP_TOOLS_NETSIM_ENABLED_IN_RELEASE
+    PS5: UNITY_MP_TOOLS_NETSIM_ENABLED_IN_RELEASE
+    QNX: UNITY_MP_TOOLS_NETSIM_ENABLED_IN_RELEASE
+    Stadia: UNITY_MP_TOOLS_NETSIM_ENABLED_IN_RELEASE
+    Standalone: FUSION_WEAVER;UNITY_MP_TOOLS_NETSIM_ENABLED_IN_RELEASE
+    WebGL: UNITY_MP_TOOLS_NETSIM_ENABLED_IN_RELEASE
+    Windows Store Apps: UNITY_MP_TOOLS_NETSIM_ENABLED_IN_RELEASE
+    XboxOne: UNITY_MP_TOOLS_NETSIM_ENABLED_IN_RELEASE
+    iPhone: UNITY_MP_TOOLS_NETSIM_ENABLED_IN_RELEASE
+    tvOS: UNITY_MP_TOOLS_NETSIM_ENABLED_IN_RELEASE
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
@@ -723,6 +738,7 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Collab: 0
     UNet: 1
   luminIcon:
     m_Name: 
@@ -743,11 +759,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: cd75acb1-d35c-40f0-b287-941a745c8ae7
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Ground Pound
+  organizationId: skybreaker76
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

@@ -64,6 +64,15 @@ namespace SkySoft.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""5e018b6d-c02b-4e2a-8c88-ad423fae83dc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -168,6 +177,17 @@ namespace SkySoft.Input
                 },
                 {
                     ""name"": """",
+                    ""id"": ""10ab3eb1-2981-4a1b-a95b-65f4907a33b5"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""b1a1f1bd-894d-4036-8eff-d73521d2fe0c"",
                     ""path"": ""<XInputController>/leftStick"",
                     ""interactions"": """",
@@ -179,8 +199,30 @@ namespace SkySoft.Input
                 },
                 {
                     ""name"": """",
+                    ""id"": ""59bc728b-9edc-466b-855f-6d78097951a0"",
+                    ""path"": ""<XInputController>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5e9416e8-d7e3-44f6-b461-1281edb563b0"",
                     ""path"": ""<DualShockGamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""349efc3e-50cd-4cc1-8a21-338916b49a43"",
+                    ""path"": ""<DualShockGamepad>/dpad"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -284,6 +326,50 @@ namespace SkySoft.Input
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""375bcbe0-3af5-4520-baff-eed517110876"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9a615bff-5334-4fe6-81fe-ee2287da42c9"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f9700c45-6f6d-4f48-85c0-cae47c7b1974"",
+                    ""path"": ""<XInputController>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6d6d0d5-0474-481d-a8c8-3c45514f67e0"",
+                    ""path"": ""<DualShockGamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -827,6 +913,7 @@ namespace SkySoft.Input
             m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
             m_Gameplay_LookAround = m_Gameplay.FindAction("LookAround", throwIfNotFound: true);
             m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
+            m_Gameplay_Dash = m_Gameplay.FindAction("Dash", throwIfNotFound: true);
             // Menus
             m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
             m_Menus_Menu = m_Menus.FindAction("Menu", throwIfNotFound: true);
@@ -900,6 +987,7 @@ namespace SkySoft.Input
         private readonly InputAction m_Gameplay_Jump;
         private readonly InputAction m_Gameplay_LookAround;
         private readonly InputAction m_Gameplay_Interact;
+        private readonly InputAction m_Gameplay_Dash;
         public struct GameplayActions
         {
             private @Input m_Wrapper;
@@ -908,6 +996,7 @@ namespace SkySoft.Input
             public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
             public InputAction @LookAround => m_Wrapper.m_Gameplay_LookAround;
             public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
+            public InputAction @Dash => m_Wrapper.m_Gameplay_Dash;
             public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -929,6 +1018,9 @@ namespace SkySoft.Input
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
 
             private void UnregisterCallbacks(IGameplayActions instance)
@@ -945,6 +1037,9 @@ namespace SkySoft.Input
                 @Interact.started -= instance.OnInteract;
                 @Interact.performed -= instance.OnInteract;
                 @Interact.canceled -= instance.OnInteract;
+                @Dash.started -= instance.OnDash;
+                @Dash.performed -= instance.OnDash;
+                @Dash.canceled -= instance.OnDash;
             }
 
             public void RemoveCallbacks(IGameplayActions instance)
@@ -1072,6 +1167,7 @@ namespace SkySoft.Input
             void OnJump(InputAction.CallbackContext context);
             void OnLookAround(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
+            void OnDash(InputAction.CallbackContext context);
         }
         public interface IMenusActions
         {

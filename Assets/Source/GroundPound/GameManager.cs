@@ -21,6 +21,7 @@ namespace Sky.GroundPound
         KingOfTheHill
     }
 
+    [AddComponentMenu("Ground Pound/Game Manager")]
     public class GameManager : NetworkBehaviour, IPlayerJoined
     {
         public static GameManager Instance;
@@ -28,11 +29,13 @@ namespace Sky.GroundPound
         public int PlayerCount = 0;
 
         [Header("General Settings")]
+        public Camera MainCamera;
         public GameObject PlayerPrefab;
         public Transform[] Spawns;
 
         [Header("Session Settings")]
         public GameMode ActiveGameMode;
+        public Vector2 CameraMin, CameraMax;
 
         private void Awake()
         {
@@ -61,14 +64,18 @@ namespace Sky.GroundPound
 
                 // Here's where we spawn our player. Only doing this because we KNOW our player is going to be the right one
                 if (PlayerCount < Spawns.Length)
-                {
                     Runner.Spawn(PlayerPrefab, Spawns[PlayerCount].position, Quaternion.identity, Target);
-                }
                 else
-                {
-                    // Implement spectator spawning
-                }
+                    Debug.Log("Spawn Spectator"); // TODO[Sky] Implement spectator system
             }
+        }
+
+        private void DrawBounds(Vector2 Min, Vector2 Max)
+        {
+            Gizmos.DrawLine(new Vector3(Min.x, Min.y), new Vector3(Max.x, Min.y));
+            Gizmos.DrawLine(new Vector3(Min.x, Max.y), new Vector3(Max.x, Max.y));
+            Gizmos.DrawLine(new Vector3(Min.x, Min.y), new Vector3(Min.x, Max.y));
+            Gizmos.DrawLine(new Vector3(Max.x, Max.y), new Vector3(Max.x, Min.y));
         }
 
         private void OnDrawGizmos()
@@ -78,14 +85,44 @@ namespace Sky.GroundPound
             if (Spawns.Length > 0)
                 foreach (Transform Spawn in Spawns)
                     SkyEngine.Gizmos.DrawCircle(Spawn.position, 1);
+
+            if (MainCamera)
+            {
+                Gizmos.color = Color.red;
+                DrawBounds(CameraMin, CameraMax);
+
+                float OrthoSize = MainCamera.orthographicSize * (SkyEngine.AspectRatio * 1.215f); // It just works
+
+                Vector2 ViewMin = new Vector2(CameraMin.x - OrthoSize, CameraMin.y - (OrthoSize / 1.775f)); // IT JUST WORKS
+                Vector2 ViewMax = new Vector2(CameraMax.x + OrthoSize, CameraMax.y + (OrthoSize / 1.775f)); // I T   J U S T   W O R K S
+
+                Gizmos.color = Color.yellow;
+                DrawBounds(ViewMin, ViewMax);
+            }
+        }
+
+        [BehaviourButtonAction("Set CameraMin to current Camera position")]
+        public void SetMinPosition()
+        {
+            if (Camera.main)
+            {
+                CameraMin = Camera.main.transform.position;
+            }
+        }
+
+        [BehaviourButtonAction("Set CameraMax to current Camera position")]
+        public void SetMaxPosition()
+        {
+            if (Camera.main)
+            {
+                CameraMax = Camera.main.transform.position;
+            }
         }
 
         public void PlayerJoined(PlayerRef Player)
         {
             if (Player == Runner.LocalPlayer)
-            {
                 RPC_RequestServerInf(Player);
-            }
         }
     }
 }

@@ -80,6 +80,8 @@ namespace SkySoft
 
     public static class SkyEngine
     {
+        public static float AspectRatio => (float)Screen.width / Screen.height;
+
         public static LocalisationFile ActiveLocalisation { get; private set; }
         private static Dictionary<string, string> m_CommonTexts = new Dictionary<string, string>();
         public static Dictionary<string, string> CommonTexts 

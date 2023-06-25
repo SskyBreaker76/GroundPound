@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6375643545283844143}
   - component: {fileID: 85692085383755184}
+  - component: {fileID: 7629448428885395871}
+  - component: {fileID: 518112763179860711}
   - component: {fileID: 7764024581719356952}
-  - component: {fileID: 1317039640632646602}
   - component: {fileID: 9079648366297549360}
   - component: {fileID: 5803305124836220290}
   m_Layer: 3
@@ -72,6 +73,61 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.5}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &7629448428885395871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3106828567025705671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1779252708, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  InterpolationSpace: 0
+  InterpolationTarget: {fileID: 1913336179734430096}
+  InterpolateErrorCorrection: 1
+  InterpolatedErrorCorrectionSettings:
+    MinRate: 3.3
+    MaxRate: 10
+    PosBlendStart: 0.25
+    PosBlendEnd: 1
+    PosMinCorrection: 0.025
+    PosTeleportDistance: 2
+    RotBlendStart: 0.1
+    RotBlendEnd: 0.5
+    RotTeleportRadians: 1.5
+  UseLegacySharedModeInterpolation: 0
+  TargetInterpolationDelay: 0.03
+--- !u!50 &518112763179860711
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3106828567025705671}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 6200000, guid: 038d7defd277bee4c9cd720cd303961b, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!114 &7764024581719356952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,14 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  m_EnablePhysics: 1
-  m_CollisionSkin: 0.025
-  m_CollisionSize: 0.4875
-  m_CollidesWith:
-    serializedVersion: 2
-    m_Bits: 55
-  m_PlatformTag: Platform
-  m_IgnoredTags: []
   m_BaseMoveSpeed: 4
   m_CoyoteTime: 0.1
   m_JumpCurve:
@@ -132,34 +180,50 @@ MonoBehaviour:
   m_StartHitpoints: 1
   Hitpoints: 1
   IsLocalPlayer: 0
---- !u!114 &1317039640632646602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3106828567025705671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
-  InterpolationSpace: 0
-  InterpolationTarget: {fileID: 1913336179734430096}
-  InterpolateErrorCorrection: 1
-  InterpolatedErrorCorrectionSettings:
-    MinRate: 3.3
-    MaxRate: 10
-    PosBlendStart: 0.25
-    PosBlendEnd: 1
-    PosMinCorrection: 0.025
-    PosTeleportDistance: 2
-    RotBlendStart: 0.1
-    RotBlendEnd: 0.5
-    RotTeleportRadians: 1.5
-  UseLegacySharedModeInterpolation: 0
-  TargetInterpolationDelay: 0.03
+  GroundPoundDuration: 0.125
+  GroundLayers:
+    serializedVersion: 2
+    m_Bits: 55
+  GroundPoundAnimation:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.2
+      value: 0
+      inSlope: 0.013403577
+      outSlope: 0.013403577
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.87361765
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  JumpForce: 7
+  JumpInputDuration: 1.1
+  DashLength: 0.175
+  DashDelay: 1
+  JumpForceThisInput: 1
+  Horizontal: 0
+  Jump: 0
 --- !u!114 &9079648366297549360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,8 +246,8 @@ MonoBehaviour:
     RawGuidValue: bb2d9b04092c89c4caf4f781abec1c1e
   NestedObjects: []
   NetworkedBehaviours:
+  - {fileID: 7629448428885395871}
   - {fileID: 7764024581719356952}
-  - {fileID: 1317039640632646602}
   SimulationBehaviours: []
 --- !u!82 &5803305124836220290
 AudioSource:
