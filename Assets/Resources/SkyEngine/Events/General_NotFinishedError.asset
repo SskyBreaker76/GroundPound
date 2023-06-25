@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6451525443110649431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b9e6f8c19271034b9f114d21e65bab5, type: 3}
+  m_Name: EndDialogue
+  m_EditorClassIdentifier: 
+  ParentTree: {fileID: 11400000}
+  Connections: []
+  Variables:
+  - Key: 
+    Port:
+      Target: {fileID: 0}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  Returns: []
+  State: 0
+  Started: 0
+  GUID: f28c9980-f302-4c50-8c96-743eea3c2fbc
+  Position: {x: 588, y: 0}
+--- !u!114 &-2904302675258834270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed8d60dc73dafc428bf1d507205eb68, type: 3}
+  m_Name: ShowText
+  m_EditorClassIdentifier: 
+  ParentTree: {fileID: 11400000}
+  Connections:
+  - Target: {fileID: -6451525443110649431}
+    OutputIndex: 0
+    InputIndex: 0
+  Variables:
+  - Key: 
+    Port:
+      Target: {fileID: 0}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  - Key: Speaker
+    Port:
+      Target: {fileID: 0}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  Returns:
+  - Key: 
+    Port:
+      Target: {fileID: -6451525443110649431}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  State: 0
+  Started: 0
+  GUID: 0e8fdd20-b5a4-4810-b2e0-354894f10b49
+  Position: {x: 110, y: 0}
+  Children: []
+  InputNodeGUID: 
+  Properties:
+    IsControlledBySoftTarget: 0
+    SpeakerID: 
+    m_Speaker: SkyBreaker Softworks
+    Dialogue: Sorry, this part of the game isn't finished! Please check back in a
+      later update :3
+    Position: 2
+    SpokenAudio: 0
+    Audio: {fileID: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea69dd3861ac1694f9d65b050d773508, type: 3}
+  m_Name: General_NotFinishedError
+  m_EditorClassIdentifier: 
+  RootNode: {fileID: 6840599679298177817}
+  TreeState: 0
+  Nodes:
+  - {fileID: 6840599679298177817}
+  - {fileID: -2904302675258834270}
+  - {fileID: -6451525443110649431}
+  Switches: []
+  Variables: []
+  Data:
+    EventName: 4f2411c6-9f1b-4033-a6a2-a68acd56e2e6
+--- !u!114 &6840599679298177817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee9cd181ddf8b348a5360c09629f20d, type: 3}
+  m_Name: StartNode
+  m_EditorClassIdentifier: 
+  ParentTree: {fileID: 11400000}
+  Connections:
+  - Target: {fileID: -2904302675258834270}
+    OutputIndex: 0
+    InputIndex: 0
+  Variables:
+  - Key: 
+    Port:
+      Target: {fileID: 0}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  Returns:
+  - Key: 
+    Port:
+      Target: {fileID: -2904302675258834270}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  State: 0
+  Started: 0
+  GUID: 4f2411c6-9f1b-4033-a6a2-a68acd56e2e6
+  Position: {x: 0, y: 0}
+  TargetTree: {fileID: 0}
+  Child: {fileID: 0}
+  Title: 
+  Identifier: 

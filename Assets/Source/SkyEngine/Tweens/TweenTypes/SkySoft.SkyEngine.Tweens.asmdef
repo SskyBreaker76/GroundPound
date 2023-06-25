@@ -1,0 +1,17 @@
+{
+    "name": "SkySoft.SkyEngine.Tweens",
+    "rootNamespace": "SkySoft.UI.Tweens",
+    "references": [
+        "GUID:4564feac86515524c8635aaf699ba6e5",
+        "GUID:ff69364873367b54e93ff6c3464f2561"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

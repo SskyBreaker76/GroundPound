@@ -1,0 +1,401 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7147940376722299980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4366dfafbe2bd3043aaefb40a4c7dab7, type: 3}
+  m_Name: PlaySound
+  m_EditorClassIdentifier: 
+  ParentTree: {fileID: 11400000}
+  Connections:
+  - Target: {fileID: 4202633968319385989}
+    OutputIndex: 0
+    InputIndex: 0
+  Variables:
+  - Key: 
+    Port:
+      Target: {fileID: 0}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  Returns:
+  - Key: 
+    Port:
+      Target: {fileID: 4202633968319385989}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  State: 0
+  Started: 0
+  GUID: acb9842e-f913-46a0-9c4c-634e2d740e70
+  Position: {x: 938.00006, y: 0}
+  Children: []
+  Sound: {fileID: 8300000, guid: f77308749e06c974aa2bc36e5ff7b177, type: 3}
+  WaitUntilFinished: 0
+--- !u!114 &-6162842149594952237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed8d60dc73dafc428bf1d507205eb68, type: 3}
+  m_Name: ShowText
+  m_EditorClassIdentifier: 
+  ParentTree: {fileID: 11400000}
+  Connections:
+  - Target: {fileID: 9067860626284511152}
+    OutputIndex: 0
+    InputIndex: 0
+  Variables:
+  - Key: 
+    Port:
+      Target: {fileID: 0}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  - Key: Speaker
+    Port:
+      Target: {fileID: 0}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  Returns:
+  - Key: 
+    Port:
+      Target: {fileID: 9067860626284511152}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  State: 0
+  Started: 0
+  GUID: ab591610-3fe4-49a6-b532-2204741c14ed
+  Position: {x: 166, y: 0}
+  Children: []
+  InputNodeGUID: 
+  Properties:
+    IsControlledBySoftTarget: 0
+    SpeakerID: 
+    m_Speaker: 
+    Dialogue: The magics in this area seem powerful.
+    Position: 2
+    SpokenAudio: 0
+    Audio: {fileID: 0}
+--- !u!114 &-4711828559523356485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969b45fe59ac02e4b9ba483e29cd5650, type: 3}
+  m_Name: Branch
+  m_EditorClassIdentifier: 
+  ParentTree: {fileID: 11400000}
+  Connections:
+  - Target: {fileID: 1871893812947617535}
+    OutputIndex: 0
+    InputIndex: 0
+  - Target: {fileID: 4202633968319385989}
+    OutputIndex: 1
+    InputIndex: 0
+  Variables:
+  - Key: 
+    Port:
+      Target: {fileID: 0}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  Returns:
+  - Key: Yes
+    Port:
+      Target: {fileID: 1871893812947617535}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  - Key: No
+    Port:
+      Target: {fileID: 4202633968319385989}
+      OutputIndex: 1
+      InputIndex: 0
+    HasConnection: 0
+  State: 0
+  Started: 0
+  GUID: 7bf5aec4-3944-4554-b919-3c935f0d193c
+  Position: {x: 661.0001, y: 0.000030517578}
+  Children: []
+  Options: Yes/;/No
+--- !u!114 &-2461809672847834691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4366dfafbe2bd3043aaefb40a4c7dab7, type: 3}
+  m_Name: PlaySound
+  m_EditorClassIdentifier: 
+  ParentTree: {fileID: 11400000}
+  Connections:
+  - Target: {fileID: -6162842149594952237}
+    OutputIndex: 0
+    InputIndex: 0
+  Variables:
+  - Key: 
+    Port:
+      Target: {fileID: 0}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  Returns:
+  - Key: 
+    Port:
+      Target: {fileID: -6162842149594952237}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  State: 0
+  Started: 0
+  GUID: b21c6066-1087-4c47-a7a2-105177ff4ccd
+  Position: {x: 56, y: 0}
+  Children: []
+  Sound: {fileID: 8300000, guid: 4df0d29b41e2e4d4492aa3ac7ad75c0b, type: 3}
+  WaitUntilFinished: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea69dd3861ac1694f9d65b050d773508, type: 3}
+  m_Name: _System_SaveGame
+  m_EditorClassIdentifier: 
+  RootNode: {fileID: 6913801555031058886}
+  TreeState: 0
+  Nodes:
+  - {fileID: 6913801555031058886}
+  - {fileID: -6162842149594952237}
+  - {fileID: -4711828559523356485}
+  - {fileID: 9067860626284511152}
+  - {fileID: 4202633968319385989}
+  - {fileID: -2461809672847834691}
+  - {fileID: 2599838142524264}
+  - {fileID: 1871893812947617535}
+  - {fileID: -7147940376722299980}
+  Switches: []
+  Variables:
+  - Key: Jim
+    Value: Boris
+    Exposed: 0
+  Data:
+    EventName: cd65644a-d193-4441-9934-9188b7accc38
+--- !u!114 &2599838142524264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f78440f00510e48b90e8d30192636a, type: 3}
+  m_Name: SpawnObject
+  m_EditorClassIdentifier: 
+  ParentTree: {fileID: 11400000}
+  Connections:
+  - Target: {fileID: -2461809672847834691}
+    OutputIndex: 0
+    InputIndex: 0
+  Variables:
+  - Key: 
+    Port:
+      Target: {fileID: 0}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  Returns:
+  - Key: 
+    Port:
+      Target: {fileID: -2461809672847834691}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  State: 0
+  Started: 0
+  GUID: 6f2ef1b5-0fec-47ff-ad5b-1d7daf1b51d8
+  Position: {x: -69.999985, y: 0.00002169609}
+  Children: []
+  UseCurrentEventLocation: 1
+  Location: {x: -Infinity, y: -Infinity, z: -Infinity}
+  Object: {fileID: 7892704204448229962, guid: 10f8d9df19596d24b9b9535e8ce4fdb0, type: 3}
+--- !u!114 &1871893812947617535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd2faaa1f770164285aee01ffb9054d, type: 3}
+  m_Name: SaveGame
+  m_EditorClassIdentifier: 
+  ParentTree: {fileID: 11400000}
+  Connections:
+  - Target: {fileID: -7147940376722299980}
+    OutputIndex: 0
+    InputIndex: 0
+  Variables:
+  - Key: 
+    Port:
+      Target: {fileID: 0}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  Returns:
+  - Key: 
+    Port:
+      Target: {fileID: -7147940376722299980}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  State: 0
+  Started: 0
+  GUID: 6f315f3e-94df-49f5-bd02-633be093dc99
+  Position: {x: 777, y: 0}
+  Children: []
+  DesiredSlot: 0
+  PS2Speed: 1
+  OpensSaveMenu: 1
+  LoadMode: 0
+--- !u!114 &4202633968319385989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b9e6f8c19271034b9f114d21e65bab5, type: 3}
+  m_Name: EndDialogue
+  m_EditorClassIdentifier: 
+  ParentTree: {fileID: 11400000}
+  Connections: []
+  Variables:
+  - Key: 
+    Port:
+      Target: {fileID: 0}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  Returns: []
+  State: 0
+  Started: 0
+  GUID: b92ce1e9-154b-49bb-98cd-741a15d1d80e
+  Position: {x: 1048, y: 0}
+--- !u!114 &6913801555031058886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee9cd181ddf8b348a5360c09629f20d, type: 3}
+  m_Name: StartNode
+  m_EditorClassIdentifier: 
+  ParentTree: {fileID: 11400000}
+  Connections:
+  - Target: {fileID: 2599838142524264}
+    OutputIndex: 0
+    InputIndex: 0
+  Variables:
+  - Key: 
+    Port:
+      Target: {fileID: 0}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  Returns:
+  - Key: 
+    Port:
+      Target: {fileID: 2599838142524264}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  State: 0
+  Started: 0
+  GUID: afe9a755-8496-4ab9-8182-abe6bcc68be8
+  Position: {x: -180.00003, y: -0.0000026226044}
+  TargetTree: {fileID: 0}
+  Child: {fileID: 0}
+  Title: 
+  Identifier: 
+--- !u!114 &9067860626284511152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed8d60dc73dafc428bf1d507205eb68, type: 3}
+  m_Name: ShowText
+  m_EditorClassIdentifier: 
+  ParentTree: {fileID: 11400000}
+  Connections:
+  - Target: {fileID: -4711828559523356485}
+    OutputIndex: 0
+    InputIndex: 0
+  Variables:
+  - Key: 
+    Port:
+      Target: {fileID: 0}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  - Key: Speaker
+    Port:
+      Target: {fileID: 0}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  Returns:
+  - Key: 
+    Port:
+      Target: {fileID: -4711828559523356485}
+      OutputIndex: 0
+      InputIndex: 0
+    HasConnection: 0
+  State: 0
+  Started: 0
+  GUID: ed2f46d3-80f7-4673-a5a5-59e8c8e0b840
+  Position: {x: 412, y: 0.0000071525574}
+  Children: []
+  InputNodeGUID: 
+  Properties:
+    IsControlledBySoftTarget: 0
+    SpeakerID: 
+    m_Speaker: 
+    Dialogue: (Would you like to save your progress?)
+    Position: 2
+    SpokenAudio: 0
+    Audio: {fileID: 0}

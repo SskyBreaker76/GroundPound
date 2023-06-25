@@ -1,0 +1,16 @@
+{
+    "name": "GeoJSONObject",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c7d8c526b9bb99943ab311f9fdfb0a7f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

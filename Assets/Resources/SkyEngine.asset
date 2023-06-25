@@ -1,0 +1,226 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd682f81463b1b74b8b492285aa52875, type: 3}
+  m_Name: SkyEngine
+  m_EditorClassIdentifier: 
+  SaveMenu: {fileID: 3581433779591603987, guid: 88e6e422a70d8ff469c00f361a40647f, type: 3}
+  EnableSteam: 0
+  EnableDiscord: 0
+  DefaultGlyphPack: 0
+  LeftStick: {fileID: 21300000, guid: 6c94aebf21d7dae4e89848c18cc1a9ec, type: 3}
+  RightStick: {fileID: 21300000, guid: 72323306cf9535d4eb4313802416213e, type: 3}
+  LeftBumper: {fileID: 21300000, guid: 69524de0f8991f84182a7fd6a0be5d4a, type: 3}
+  RightBumper: {fileID: 21300000, guid: 85aa774024ca0cc4ba346742dacf58bc, type: 3}
+  LeftTrigger: {fileID: 21300000, guid: 00643d1502b7c61468c609b714172811, type: 3}
+  RightTrigger: {fileID: 21300000, guid: bf6941c0cd455da41a783458cf311e73, type: 3}
+  DPad: {fileID: 0}
+  DPadUp: {fileID: 21300000, guid: 8fad6863447c58f4bbdd5327f24df59b, type: 3}
+  DPadLeft: {fileID: 21300000, guid: ac2d6f6bf85350243a573d1cc5c2d73c, type: 3}
+  DPadDown: {fileID: 21300000, guid: be432ac62bd556248a632a86c4105577, type: 3}
+  DPadRight: {fileID: 21300000, guid: 4c81c108a639acf4fb3f9afed20ac44a, type: 3}
+  North: {fileID: 21300000, guid: edab6353e9532084cb7d96178f89b132, type: 3}
+  East: {fileID: 21300000, guid: 0ddbb9053ded7b64792a11b98f19a7a7, type: 3}
+  South: {fileID: 21300000, guid: 44b7c5aac1bb51e4f9a01d182bd81468, type: 3}
+  West: {fileID: 21300000, guid: 3413a30ca340391439b8ea9386a0837b, type: 3}
+  m_Gamepads:
+  - Label: PS4Controller
+    InputType: 5
+    LeftStick: {fileID: 21300000, guid: 6c94aebf21d7dae4e89848c18cc1a9ec, type: 3}
+    LeftStickDown: {fileID: 0}
+    RightStick: {fileID: 21300000, guid: 72323306cf9535d4eb4313802416213e, type: 3}
+    RightStickDown: {fileID: 0}
+    LeftBumper: {fileID: 21300000, guid: 69524de0f8991f84182a7fd6a0be5d4a, type: 3}
+    RightBumper: {fileID: 21300000, guid: 85aa774024ca0cc4ba346742dacf58bc, type: 3}
+    LeftTrigger: {fileID: 21300000, guid: 00643d1502b7c61468c609b714172811, type: 3}
+    RightTrigger: {fileID: 21300000, guid: bf6941c0cd455da41a783458cf311e73, type: 3}
+    DPad: {fileID: 21300000, guid: a6a313f1dceaff64ca0b69d980bf4ad8, type: 3}
+    DPadUp: {fileID: 21300000, guid: 8fad6863447c58f4bbdd5327f24df59b, type: 3}
+    DPadLeft: {fileID: 21300000, guid: ac2d6f6bf85350243a573d1cc5c2d73c, type: 3}
+    DPadDown: {fileID: 21300000, guid: be432ac62bd556248a632a86c4105577, type: 3}
+    DPadRight: {fileID: 21300000, guid: 4c81c108a639acf4fb3f9afed20ac44a, type: 3}
+    North: {fileID: 21300000, guid: edab6353e9532084cb7d96178f89b132, type: 3}
+    East: {fileID: 21300000, guid: 0ddbb9053ded7b64792a11b98f19a7a7, type: 3}
+    South: {fileID: 21300000, guid: 44b7c5aac1bb51e4f9a01d182bd81468, type: 3}
+    West: {fileID: 21300000, guid: 3413a30ca340391439b8ea9386a0837b, type: 3}
+    Start: {fileID: 21300000, guid: d334914f3c3c9704e8ecfc4fb6abb313, type: 3}
+    Select: {fileID: 21300000, guid: 67cb9535af7465747b66f1258260ab95, type: 3}
+  - Label: PS3Controller
+    InputType: 12
+    LeftStick: {fileID: 21300000, guid: 3576c7ff062543a4394282825036f4eb, type: 3}
+    LeftStickDown: {fileID: 0}
+    RightStick: {fileID: 21300000, guid: 722158e5e5e50c84d934689adda3ccc0, type: 3}
+    RightStickDown: {fileID: 0}
+    LeftBumper: {fileID: 21300000, guid: f4cdfc855c4e3aa4bb461b7fe11a245e, type: 3}
+    RightBumper: {fileID: 21300000, guid: a69b973bea630b84b80c4df5e107b2a9, type: 3}
+    LeftTrigger: {fileID: 21300000, guid: 1fe0e8a83f6adf24aa23d464148b5812, type: 3}
+    RightTrigger: {fileID: 21300000, guid: bf6941c0cd455da41a783458cf311e73, type: 3}
+    DPad: {fileID: 21300000, guid: e4ee50764d5e55f42835a62c6ac6843e, type: 3}
+    DPadUp: {fileID: 21300000, guid: 1bcbb1874fccbdf4b8449f174a4b0466, type: 3}
+    DPadLeft: {fileID: 21300000, guid: 8773fbe7e78965544a5f95ed9c42da0b, type: 3}
+    DPadDown: {fileID: 21300000, guid: b370829d1a9cd204191a08333f9abb92, type: 3}
+    DPadRight: {fileID: 21300000, guid: c1b3b165a0abd064eb8de924099860ad, type: 3}
+    North: {fileID: 21300000, guid: 602e8733f0d88c34d84e4fcb2507b416, type: 3}
+    East: {fileID: 21300000, guid: f54495ea02a43d643a7a7737907a521f, type: 3}
+    South: {fileID: 21300000, guid: f49bc4a335d2812468ad3712a120c117, type: 3}
+    West: {fileID: 21300000, guid: 71658033bb823c64d8c40d404d60661d, type: 3}
+    Start: {fileID: 21300000, guid: 2ff6f200652e96f4d810f92fe6801a7d, type: 3}
+    Select: {fileID: 21300000, guid: 3cc982f97da214c47887ad5bbd2a23af, type: 3}
+  - Label: XBox360Controller
+    InputType: 2
+    LeftStick: {fileID: 21300000, guid: cfbde8e61d42c93409f560dc230c91c2, type: 3}
+    LeftStickDown: {fileID: 0}
+    RightStick: {fileID: 21300000, guid: 9fdcf554992b12944bd6a28706c9d5f3, type: 3}
+    RightStickDown: {fileID: 0}
+    LeftBumper: {fileID: 21300000, guid: ccbe2e393cc253044979dcb0677c9a0e, type: 3}
+    RightBumper: {fileID: 21300000, guid: 1ecb621f5acb3d84fa5bba89724accc3, type: 3}
+    LeftTrigger: {fileID: 21300000, guid: e2aa52fcfbfc3eb4d8750f855050958d, type: 3}
+    RightTrigger: {fileID: 21300000, guid: 32ade3a12097cec4c96ccd245faebefc, type: 3}
+    DPad: {fileID: 21300000, guid: dff6581cafe8eae4d8a0fd176da8f7b3, type: 3}
+    DPadUp: {fileID: 21300000, guid: 67e1eb87304080c46b8630a4a1872dba, type: 3}
+    DPadLeft: {fileID: 21300000, guid: d280e5e312666a245a764bce1eba5515, type: 3}
+    DPadDown: {fileID: 21300000, guid: 4412737709e944b448056817beb5f07b, type: 3}
+    DPadRight: {fileID: 21300000, guid: 2cf8dd952f63d5d4db32457460850cf7, type: 3}
+    North: {fileID: 21300000, guid: f2b1b69fb02ffc04e8d3d13e02699022, type: 3}
+    East: {fileID: 21300000, guid: d1d9ad090161b564a982adc73472bf0f, type: 3}
+    South: {fileID: 21300000, guid: 2a7032316aa1f9a4f85e16969f2c469a, type: 3}
+    West: {fileID: 21300000, guid: 32580dafad5b7aa4d92bde16a743a34f, type: 3}
+    Start: {fileID: 21300000, guid: df7ee70ba10da754491893cebe89cd7d, type: 3}
+    Select: {fileID: 21300000, guid: 98abb619623decc468305bc85482eac6, type: 3}
+  - Label: XBoxOneController
+    InputType: 3
+    LeftStick: {fileID: 21300000, guid: 5de673f8cfc28374cafb1c863a967f85, type: 3}
+    LeftStickDown: {fileID: 0}
+    RightStick: {fileID: 21300000, guid: 1f473445f3f57914c8c474aaa4d09aa6, type: 3}
+    RightStickDown: {fileID: 0}
+    LeftBumper: {fileID: 21300000, guid: 1b368b7d87a5f424c97d9b9b546122dc, type: 3}
+    RightBumper: {fileID: 21300000, guid: 44c15ad17ee2fdf43863d555a7e4fb22, type: 3}
+    LeftTrigger: {fileID: 21300000, guid: f3bf827d09d8eb141b588167ff8982b0, type: 3}
+    RightTrigger: {fileID: 21300000, guid: d5f50d0540a14364f915fc2cf13db1d9, type: 3}
+    DPad: {fileID: 21300000, guid: 58fd12612802de64aa031154381133eb, type: 3}
+    DPadUp: {fileID: 21300000, guid: 66d77590709a283448626fe7c96dc637, type: 3}
+    DPadLeft: {fileID: 21300000, guid: 565d58eb01bd4d84597d968dc9d940b6, type: 3}
+    DPadDown: {fileID: 21300000, guid: 233c9445bc3cfd445b1099e647b4d3ed, type: 3}
+    DPadRight: {fileID: 21300000, guid: d136ce4d2b4515e4ca133cf25e451db6, type: 3}
+    North: {fileID: 21300000, guid: f89b383227519224495b0528545b887e, type: 3}
+    East: {fileID: 21300000, guid: 0460fa68ef4be194abc547c50d56275b, type: 3}
+    South: {fileID: 21300000, guid: aac8113a71d87044284da4afdce10895, type: 3}
+    West: {fileID: 21300000, guid: eadd901543de68e41bc9702109e7259b, type: 3}
+    Start: {fileID: 21300000, guid: 2a32f370f343a264b90e49aaf018dff2, type: 3}
+    Select: {fileID: 21300000, guid: bcef22d97096807469ddee0558089843, type: 3}
+  - Label: SteamController
+    InputType: 1
+    LeftStick: {fileID: 21300000, guid: 2d00d289abae9e54f84ec4fe7cc21584, type: 3}
+    LeftStickDown: {fileID: 0}
+    RightStick: {fileID: 21300000, guid: bcb6e8041346b944d96d8ca48d3736b3, type: 3}
+    RightStickDown: {fileID: 0}
+    LeftBumper: {fileID: 21300000, guid: 9e2e20da55780e044aa3b1a29d07a499, type: 3}
+    RightBumper: {fileID: 21300000, guid: ba87f8bea0c7ca14bb4ebcd55df96cf1, type: 3}
+    LeftTrigger: {fileID: 21300000, guid: 1e3e77aa0be0e8c49a3930b5a74d23cc, type: 3}
+    RightTrigger: {fileID: 21300000, guid: dbc43fd956c6b5543a1c7a65e0324335, type: 3}
+    DPad: {fileID: 21300000, guid: 2d00d289abae9e54f84ec4fe7cc21584, type: 3}
+    DPadUp: {fileID: 21300000, guid: 8de978dfd10eca8459bb0adc45640c63, type: 3}
+    DPadLeft: {fileID: 21300000, guid: db6138be593d7a64088288fa97f9f58d, type: 3}
+    DPadDown: {fileID: 21300000, guid: 9b52230fb9752574daf6e352546c27f5, type: 3}
+    DPadRight: {fileID: 21300000, guid: 1b3899ad566599740974ebcb99354b3a, type: 3}
+    North: {fileID: 21300000, guid: 9b5130fade51a124689de32cea2c7b48, type: 3}
+    East: {fileID: 21300000, guid: 460ff8f92ffff0744b88b6a61290c9a2, type: 3}
+    South: {fileID: 21300000, guid: a5903eb6d8d9397458c52e753001454d, type: 3}
+    West: {fileID: 21300000, guid: 0fcf67a9a9e5e0047adca03921d3f236, type: 3}
+    Start: {fileID: 21300000, guid: e7b6ef4fa92c8db4092f6c8eda7e2248, type: 3}
+    Select: {fileID: 21300000, guid: adce9c3ae09f43f4ca5d36256b4ca8c7, type: 3}
+  - Label: SwitchJoyConPair
+    InputType: 8
+    LeftStick: {fileID: 21300000, guid: 058127c9dc45a0241b262592d0447584, type: 3}
+    LeftStickDown: {fileID: 0}
+    RightStick: {fileID: 21300000, guid: 59ed308fa98d8ed4f9ca7ead6ecbc655, type: 3}
+    RightStickDown: {fileID: 0}
+    LeftBumper: {fileID: 21300000, guid: 035def63926265d4cbae8e8ff6adeea9, type: 3}
+    RightBumper: {fileID: 21300000, guid: 8a4e8bd8b2095224a90a4059e297d738, type: 3}
+    LeftTrigger: {fileID: 21300000, guid: 1d7d55cebd97d0c49a2a28c3145c26ac, type: 3}
+    RightTrigger: {fileID: 21300000, guid: 3c3c23063f774d141bae33cd7d282032, type: 3}
+    DPad: {fileID: 21300000, guid: 752def73c0f8fc847bc0b64dd839f424, type: 3}
+    DPadUp: {fileID: 21300000, guid: fc25ba923c49f25409eb1b09411c98a0, type: 3}
+    DPadLeft: {fileID: 21300000, guid: dd5b6dbba847a52489bd8e176ec86a11, type: 3}
+    DPadDown: {fileID: 21300000, guid: 0adb086646a86244bb75a31733a4d5fb, type: 3}
+    DPadRight: {fileID: 21300000, guid: f52fbdda241a66e48b54d4f08ff65d2c, type: 3}
+    North: {fileID: 21300000, guid: a58f06a3ec4ac7c43ba86ba2c60e9296, type: 3}
+    East: {fileID: 21300000, guid: a1a3c9621aff8ca4cbb3aa97a514f8b9, type: 3}
+    South: {fileID: 21300000, guid: bb4b38814f56c6647a5d47314a037448, type: 3}
+    West: {fileID: 21300000, guid: ac0a490b33025624ca4624fa43eb7b05, type: 3}
+    Start: {fileID: 21300000, guid: a400fad089192f5459d2063784381ea6, type: 3}
+    Select: {fileID: 21300000, guid: 76112663bbe6fab48ab218798237b04a, type: 3}
+  - Label: Unknown
+    InputType: 0
+    LeftStick: {fileID: 21300000, guid: 549db81837388ae4ba9ab3dff8ab62ec, type: 3}
+    LeftStickDown: {fileID: 0}
+    RightStick: {fileID: 21300000, guid: b8cee97c1ebb5644d9c21182da4e3c05, type: 3}
+    RightStickDown: {fileID: 21300000, guid: 34d0b05d18481ef4db24bd3756126c13, type: 3}
+    LeftBumper: {fileID: 21300000, guid: 1c7f52a54ae91ab46b26fef356ba99a8, type: 3}
+    RightBumper: {fileID: 21300000, guid: fa44d0ab76d003d41bc3bb305e27ed2c, type: 3}
+    LeftTrigger: {fileID: 21300000, guid: daae498c74641f24889e1c2004348c43, type: 3}
+    RightTrigger: {fileID: 21300000, guid: d5f50d0540a14364f915fc2cf13db1d9, type: 3}
+    DPad: {fileID: 21300000, guid: ecc9d2f884fb1434e852a10bd682884e, type: 3}
+    DPadUp: {fileID: 21300000, guid: 66d77590709a283448626fe7c96dc637, type: 3}
+    DPadLeft: {fileID: 21300000, guid: 565d58eb01bd4d84597d968dc9d940b6, type: 3}
+    DPadDown: {fileID: 21300000, guid: 233c9445bc3cfd445b1099e647b4d3ed, type: 3}
+    DPadRight: {fileID: 21300000, guid: d136ce4d2b4515e4ca133cf25e451db6, type: 3}
+    North: {fileID: 21300000, guid: 85bbfa8b11d826d4795c257275ef8606, type: 3}
+    East: {fileID: 21300000, guid: 6b1b52e01d4f38a488d913afab1df85a, type: 3}
+    South: {fileID: 21300000, guid: 9cfda42673f0aaa47b3ed19af6751e5f, type: 3}
+    West: {fileID: 21300000, guid: 85bbfa8b11d826d4795c257275ef8606, type: 3}
+    Start: {fileID: 21300000, guid: 4379c535e40c2494ba2f5112a8b05c14, type: 3}
+    Select: {fileID: 21300000, guid: 1784cd7f3496706408b6a63ca6fc4387, type: 3}
+  - Label: GenericGamepad
+    InputType: 4
+    LeftStick: {fileID: 21300000, guid: 5de673f8cfc28374cafb1c863a967f85, type: 3}
+    LeftStickDown: {fileID: 0}
+    RightStick: {fileID: 21300000, guid: 1f473445f3f57914c8c474aaa4d09aa6, type: 3}
+    RightStickDown: {fileID: 0}
+    LeftBumper: {fileID: 21300000, guid: 1b368b7d87a5f424c97d9b9b546122dc, type: 3}
+    RightBumper: {fileID: 21300000, guid: 44c15ad17ee2fdf43863d555a7e4fb22, type: 3}
+    LeftTrigger: {fileID: 21300000, guid: f3bf827d09d8eb141b588167ff8982b0, type: 3}
+    RightTrigger: {fileID: 21300000, guid: d5f50d0540a14364f915fc2cf13db1d9, type: 3}
+    DPad: {fileID: 21300000, guid: 58fd12612802de64aa031154381133eb, type: 3}
+    DPadUp: {fileID: 21300000, guid: 66d77590709a283448626fe7c96dc637, type: 3}
+    DPadLeft: {fileID: 21300000, guid: 565d58eb01bd4d84597d968dc9d940b6, type: 3}
+    DPadDown: {fileID: 21300000, guid: 233c9445bc3cfd445b1099e647b4d3ed, type: 3}
+    DPadRight: {fileID: 21300000, guid: d136ce4d2b4515e4ca133cf25e451db6, type: 3}
+    North: {fileID: 21300000, guid: 5608974e0c685d34a9dfdf584b8e5729, type: 3}
+    East: {fileID: 21300000, guid: 8e5b5ceb4dd5663479b7eabbc1c11fe5, type: 3}
+    South: {fileID: 21300000, guid: bb9ef8b9d0814c4488bcd42e29b612fd, type: 3}
+    West: {fileID: 21300000, guid: 31e7df418e367b643b5feb267e4e5d18, type: 3}
+    Start: {fileID: 21300000, guid: 2a32f370f343a264b90e49aaf018dff2, type: 3}
+    Select: {fileID: 21300000, guid: bcef22d97096807469ddee0558089843, type: 3}
+  VibrationIntensity: 1
+  m_DLCs:
+  - ID: DLC_Winterland
+    SteamID: 0
+    Name: The Land of Cold and Elves
+  TalkIcon: {fileID: 0}
+  UseIcon: {fileID: 0}
+  InspectIcon: {fileID: 0}
+  ShopIcon: {fileID: 0}
+  QuickGetItems: 0
+  AllItems:
+  - {fileID: 11400000, guid: 9cd86b0bb140bdc4bac9edb13b455b87, type: 2}
+  AllArmours: []
+  AllBooks: []
+  AllConsumables:
+  - {fileID: 11400000, guid: 52660b85338c3e14d8adfe81adb90c18, type: 2}
+  - {fileID: 11400000, guid: 5ceca8ab345902f4f941bd220b2483c8, type: 2}
+  AllEquipment: []
+  AllWeapons: []
+  HumanoidGizmos: {fileID: 0}
+  PositionOffset: {x: 0, y: 0, z: 0}
+  RotationOffset: {x: 0, y: 180, z: 0}
+  Scale: 1
+  LootBag: {fileID: 4231828858129256881, guid: 278af24a67228944eb1af2353ad35a56, type: 3}

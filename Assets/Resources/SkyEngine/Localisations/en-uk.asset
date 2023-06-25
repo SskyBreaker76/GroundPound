@@ -1,0 +1,428 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20210742974a9974c9dcdf0f3faf9a38, type: 3}
+  m_Name: en-uk
+  m_EditorClassIdentifier: 
+  GenerateJson: 0
+  Language: en-uk
+  DisplayName: English
+  GameName: ERINHEIM
+  Graphs:
+  - GraphID: _System_SaveGame
+    Nodes:
+    - GUID: ab591610-3fe4-49a6-b532-2204741c14ed
+      Text: The magics in this area seem powerful.
+    - GUID: 7bf5aec4-3944-4554-b919-3c935f0d193c
+      Text: Yes/;/No
+    - GUID: ed2f46d3-80f7-4673-a5a5-59e8c8e0b840
+      Text: (Would you like to save your progress?)
+  - GraphID: General_NotFinishedError
+    Nodes:
+    - GUID: 0e8fdd20-b5a4-4810-b2e0-354894f10b49
+      Text: Sorry, this part of the game isn't finished! Please check back in a later
+        update :3
+  - GraphID: NamsanPlains_JotaDialogue
+    Nodes:
+    - GUID: 85785f52-dc82-47b2-aca4-da49f91ac16f
+      Text: Wow! This tower is an excellent example of old Rydian Architecture! Just
+        look at the brickwork! Even todays masons struggle to cut them this straight!
+    - GUID: 394afbab-370a-4765-8256-dc5ae62157e7
+      Text: Oh sorry! I'm rambling again...| Say, I haven't seen you around before,
+        you new?
+    - GUID: dccb7c18-a528-4765-bf49-242eb8a54c54
+      Text: Yes/;/...
+    - GUID: 49d1a9d8-bd7b-4223-9ad0-f1d8d567f38c
+      Text: Cool! I'm also new, just came in from Josmia! Name's Jota, I'm an architect
+        who was hired to build our Emperor's new palace.
+    - GUID: a52b4ec9-32a4-4ada-ae14-cd94c9b41672
+      Text: Oh, you don't speak Middle-Tongue huh? Well that's allright... I'll just
+        get back to it then!
+    - GUID: ea9383fb-f9b3-4ebd-a225-cf61db223f94
+      Text: Ugh, but he wants a mixture of Rydian, Winterlandic and Regallian influence
+        in its design, and at this point I'm convinced that it'd take some sort of
+        super-hume to figure out that mixture...
+    - GUID: ac1cea56-892e-4299-92e5-2f1f93c06bcc
+      Text: Anyway, I should leave you to it... I have to go now since there's thirteen
+        more landmarks for me to visit before Undralis sets. Fairwell traveller!
+    - GUID: f90795e9-240e-4897-a0fe-d23098bdbeda
+      Text: 'Stupid Emperor. Why, I ought to chop your head off when I return! Serve
+        you right for giving me this impossible task!|
+
+        Oh shoot! Didn''t
+        see you there... How much of that did you hear?'
+    - GUID: 8a3282e6-f241-47aa-bd36-cd20a0e050ea
+      Text: Nothing/;/Emperor?
+    - GUID: de787715-1e96-4e72-97c8-4d3d6db7dc38
+      Text: Oh thank the gods! Thought I was gonna have to silence you for a minute!
+    - GUID: bee59cdd-5d01-4b14-a0f2-c4977ec4c3b5
+      Text: Silence?/;/Nope!
+    - GUID: 2bc0f737-b798-4080-90b2-7ef7ee1d3534
+      Text: Ohhh I see... You're not actually from Josmia are you, son of the sand?
+    - GUID: af57b423-c850-4631-bc32-c41cfcc7a0a4
+      Text: Ohhh I see... You're not actually from Josmia are you, Daughter of the
+        Sand?
+    - GUID: 67273ec1-b6ba-4c77-b1f0-44d82ca63a8f
+      Text: Right... You also new here?
+    - GUID: 1faed103-a946-4ab2-8006-e72f6f2b3349
+      Text: Hrmph. Lucky you! Our current Emperor hired me to design him a new palace...
+  - GraphID: NamsanPlains_OminousDoor
+    Nodes:
+    - GUID: 96baadb9-8938-46be-880c-0d33ea05656f
+      Text: 'This door emits an ominous aura!|
+
+        Maybe I shouldn''t go in...'
+  - GraphID: Orysmar_AschDialogue
+    Nodes:
+    - GUID: dde1f7d2-9118-4b25-b4b3-69a3a0126948
+      Text: Greetings traveller, how may I help you?
+    - GUID: 5e236532-7eac-467b-b301-d32624163103
+      Text: Trade/;/Rumours/;/Goodbye
+    - GUID: cfe77dff-09e7-40eb-9913-63cf53424d1c
+      Text: Fairwell traveller!
+    - GUID: 70da93ea-7c50-48ed-afdc-06d9b85d5825
+      Text: Is there anything else I can do for you?
+  - GraphID: Orysmar_UrchinDialogue
+    Nodes:
+    - GUID: 933ef846-8af1-4297-a391-48e51a78900e
+      Text: Oh hey traveller! Could you spare a coin for a poor urchin?
+    - GUID: 71d13a45-09c1-4043-848b-255921a5486e
+      Text: Heil traveller! Spare a coin for a poor street kid?
+    - GUID: 932151ff-6e3d-4294-89df-339c159acb41
+      Text: Greetings traveller! Could you perchance spare a single copper for a
+        starving child?
+    - GUID: 896daa74-cf71-4200-b3b8-1f3ac740d47d
+      Text: Go away! I never want to speak to you again fiend!
+    - GUID: a9011dac-e10c-4fa7-bcb0-864c998bbd89
+      Text: Sure! (-1 C)/;/Sorry, I can't./;/Ew, filth!/;/Goodbye
+    - GUID: 5e3e3f08-2d78-42ad-8a0f-3fad7c6a376a
+      Text: I can't believe you're so mean! Go away bully! I hope you never set foot
+        here again!
+    - GUID: 53dcc488-0ea3-4ae2-b637-c4c97102c626
+      Text: Aww, hopefully next time.
+    - GUID: 6dd9143e-d63f-4ec4-8e8b-401043cfa45e
+      Text: Thank you traveller! May the six divines smile upon your generous soul!
+    - GUID: 1a25b188-cd41-46cd-9873-f9a968020b0c
+      Text: Apologise/;/Leave
+    - GUID: e49dacbb-9b15-483f-8298-84a23bfc94ab
+      Text: You're apologising?
+    - GUID: d4046bf8-097a-4a21-8c4c-8472439ab85f
+      Text: 'Hmmm. I suppose I can forgive you...
+
+        If you make a donation?'
+    - GUID: 2db932a4-ad9a-4b69-ac67-eeecf970bf78
+      Text: Accept (-5C)/;/Refuse
+    - GUID: f4ec27ff-065e-4068-a0db-825037c52ced
+      Text: Wow! 5 Coppers? I can eat every day for a whole week!
+    - GUID: b7c9bc0e-32dd-4036-a423-95d721cb5753
+      Text: Fine! I don't need your pitance anyway!
+  - GraphID: Rumours_NamsanHold
+    Nodes:
+    - GUID: 3994a88d-97bc-4d49-9223-8c29a5f5cbf9
+      Text: Most adventurers are quite scared of the dark. And they've good reason
+        to be!
+    - GUID: f2abaabc-ec58-40cf-ace1-d131ae0bc05c
+      Text: Why's that?/;/Interesting
+    - GUID: 66af7b21-6240-43a0-9ac3-20c2f31f6740
+      Text: You don't know? The dark is where Erinheim's made home for its most dangerous
+        beasties!
+    - GUID: 1210261d-b8d5-4092-951b-8e9c360a9431
+      Text: 'In the centre of most towns and cities, you can find a Bounty Board.
+        At these boards you can participate in Hunts.
+
+        Don''t let the allure
+        of Crowns suck you in though, these hunts are often extremely dangerous,
+        and your odds of surviving slim.'
+    - GUID: e44b7646-393b-4a15-b01c-4fec4932cef0
+      Text: There's a strange man that pops up called Caleb. I'd avoid him if I were
+        you, he's mad as a hatter!
+    - GUID: d7d55d9c-5e4e-4d2d-a4a7-ecdf07602819
+      Text: I've heard people speak of an ancient civilisation that lives under the
+        sea. Ask me though, I think it's a load of tosh!
+    - GUID: 756ac674-20e2-42e5-a8c6-0697d7b053a0
+      Text: 'Hmm. You look like a strong individual. I''ve heard that the bounty
+        board in Orysmar has a very exotic hunt...|
+
+        They call it the Desert
+        Guardian. 10,000 Crowns to the hunter who brings its head to Clan Nern!'
+    - GUID: a59a756a-c69d-42bc-9ab7-43b50058d79f
+      Text: 'They say Winterland''s King Althier III stashed all his old adventuring
+        gear around Regallia.|
+
+        If I wasn''t running this stand I''d spend
+        every minute of my life searching for it, as I''ve heard that the armour
+        alone is worth thousands of Crowns!'
+  Strings: []
+  Categories:
+  - Name: general
+    Strings:
+    - Key: yes
+      Text: Yes
+    - Key: no
+      Text: No
+  - Name: title
+    Strings:
+    - Key: start
+      Text: Press
+    - Key: newgame
+      Text: New Game
+    - Key: newgame_dialogue
+      Text: Are you sure you wish to start a new adventure?
+    - Key: continue
+      Text: Continue
+    - Key: load
+      Text: Load Game
+    - Key: options
+      Text: Options
+    - Key: quit
+      Text: Quit Game
+    - Key: quit_dialogue
+      Text: Are you sure you wish to leave Erinheim?
+    - Key: continue
+      Text: Slot
+  - Name: options
+    Strings:
+    - Key: language
+      Text: Language
+    - Key: posteffects
+      Text: Post Effects
+    - Key: graphics
+      Text: Graphics
+    - Key: mainvolume
+      Text: Main Volume
+    - Key: musicvolume
+      Text: Music Volume
+    - Key: cameraspeed
+      Text: Camera Sensitivity
+    - Key: physicsbones
+      Text: Physics Bones
+    - Key: advancedik
+      Text: Advanced IK (<color=yellow>EXPERIMENTAL</color>)
+    - Key: inputdevice
+      Text: Input Device
+    - Key: toggle_on
+      Text: On
+    - Key: toggle_off
+      Text: Off
+    - Key: toggle_true
+      Text: True
+    - Key: toggle_false
+      Text: False
+  - Name: charedit
+    Strings:
+    - Key: gender
+      Text: Gender
+    - Key: race
+      Text: Race
+    - Key: skincolour
+      Text: Skin Colour
+    - Key: eyecolour
+      Text: Eye Colour
+    - Key: eyecolour2
+      Text: Eye Colour 2
+    - Key: haircolour
+      Text: Hair Colour
+    - Key: done
+      Text: Finish and Name
+  - Name: naming
+    Strings:
+    - Key: header
+      Text: Enter thy Name
+    - Key: done
+      Text: Done
+  - Name: pause
+    Strings:
+    - Key: resume
+      Text: Resume
+    - Key: inventory
+      Text: Inventory
+  - Name: save
+    Strings:
+    - Key: header
+      Text: SELECT SAVE FILE
+    - Key: status_loading
+      Text: Loading Game...
+    - Key: status_saving
+      Text: Saving Game...
+    - Key: status_warning
+      Text: Please don't turn off your Computer...
+    - Key: done
+      Text: Save Complete!
+  - Name: item
+    Strings:
+    - Key: crowns
+      Text: Crowns
+  - Name: system
+    Strings:
+    - Key: nofile
+      Text: No File
+    - Key: developer
+      Text: SkyBreaker Softworks
+  - Name: commands
+    Strings:
+    - Key: header
+      Text: Commands
+    - Key: attack
+      Text: Attack
+    - Key: spells
+      Text: Spells
+    - Key: items
+      Text: Items
+    - Key: party
+      Text: Party
+  - Name: war
+    Strings:
+    - Key: keep
+      Text: Keep
+    - Key: camp
+      Text: Encampment
+    - Key: town
+      Text: Town
+    - Key: village
+      Text: Village
+    - Key: capital
+      Text: Capital
+    - Key: morale
+      Text: Morale
+    - Key: food
+      Text: Food
+    - Key: water
+      Text: Water
+    - Key: army
+      Text: Troops
+  - Name: level
+    Strings:
+    - Key: title
+      Text: Title
+    - Key: introduction
+      Text: Intro
+    - Key: map000
+      Text: Namsan Coastline
+    - Key: map001
+      Text: Orysmar Beach
+    - Key: map002
+      Text: Namsan Plains
+    - Key: map003
+      Text: SpyHouse
+    - Key: map004
+      Text: Rhondyn Desert
+    - Key: map005
+      Text: Aguen Highway
+  - Name: stat
+    Strings:
+    - Key: level
+      Text: Level
+    - Key: hp
+      Text: HP
+    - Key: health
+      Text: Health
+    - Key: mp
+      Text: MP
+    - Key: magic
+      Text: Magic
+    - Key: exp
+      Text: EXP
+    - Key: experience
+      Text: Experience
+  - Name: race
+    Strings:
+    - Key: regallian
+      Text: Regallian
+    - Key: winterlandian
+      Text: Winterlandian
+    - Key: josmian
+      Text: Josmian
+    - Key: felis
+      Text: Felis
+    - Key: korin
+      Text: Korin
+  - Name: sex
+    Strings:
+    - Key: male
+      Text: Male
+    - Key: female
+      Text: Female
+  - Name: eyecolour
+    Strings:
+    - Key: brown
+      Text: Brown
+    - Key: crystalblue
+      Text: Crystal Blue
+    - Key: blue
+      Text: Blue
+    - Key: green
+      Text: Green
+    - Key: purple
+      Text: Purple
+    - Key: magenta
+      Text: Magenta
+    - Key: red
+      Text: Red
+    - Key: grey
+      Text: Grey
+    - Key: white
+      Text: White
+    - Key: gold
+      Text: Gold
+    - Key: orange
+      Text: Orange
+    - Key: eyecolour_1
+      Text: Eye Colour 1
+  - Name: quality
+    Strings:
+    - Key: 0
+      Text: Very Low
+    - Key: 1
+      Text: Low
+    - Key: 2
+      Text: Medium
+    - Key: 3
+      Text: High
+    - Key: 4
+      Text: Very High
+    - Key: 5
+      Text: Ultra
+  - Name: device
+    Strings:
+    - Key: ps4_controller
+      Text: PS4 Controller
+    - Key: ps3_controller
+      Text: PS3 Controller
+    - Key: 360_controller
+      Text: XBOX 360 Controller
+    - Key: xboxone_controller
+      Text: XBOX One Controller
+    - Key: steam_controller
+      Text: Steam Controller
+    - Key: switch
+      Text: Switch Controller
+    - Key: keyboard
+      Text: Keyboard
+    - Key: generic
+      Text: Generic
+  - Name: splash
+    Strings:
+    - Key: developer_header
+      Text: Developed by
+    - Key: warn_header
+      Text: 'PHOTOSENSITIVE WARNING: READ BEFORE PLAYING!'
+    - Key: body1
+      Text: This game contains flashing lights and patterns that may trigger seizures
+        in people with photosensitive epilepsy. If you or anyone in your family has
+        a history of epilepsy or seizures, please consult a doctor before playing.
+    - Key: body2
+      Text: Discontinue play and consult a doctor immediately if you experience any
+        symptoms such as dizziness, altered vision, eye/muscle twitches, loss of
+        awareness, disorientation or convulsions.
+    - Key: body3
+      Text: < This value isn't used anymore >
+    - Key: continue
+      Text: '[ PRESS ANY BUTTON TO CONTINUE ]'

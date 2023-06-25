@@ -1,0 +1,31 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <uie:Toolbar>
+        <uie:ToolbarButton tabindex="-1" text="Save and Compile" display-tooltip-when-elided="true" name="SaveBtn" />
+        <uie:ToolbarButton tabindex="-1" text="Compile" display-tooltip-when-elided="true" name="RefreshBtn" />
+        <uie:ToolbarButton tabindex="-1" text="Update Localisation" display-tooltip-when-elided="true" name="Localise" style="opacity: 1;" />
+        <ui:Toggle label="DebugMode" name="DebugMode" />
+    </uie:Toolbar>
+    <ui:GroupBox name="LayoutGroup" style="flex-grow: 1; flex-direction: row;">
+        <SplitView fixed-pane-initial-dimension="400">
+            <ui:VisualElement name="LeftPanel">
+                <ui:Label tabindex="-1" text="Inspector" display-tooltip-when-elided="true" style="padding-left: 2px; background-color: rgb(32, 32, 32); -unity-text-align: upper-center; font-size: 14px; padding-top: 2px; padding-bottom: 2px;" />
+                <InspectorView name="InspectorView" style="padding-left: 4px; padding-right: 4px; padding-top: 4px; padding-bottom: 4px; border-left-color: rgb(32, 32, 32); border-right-color: rgb(32, 32, 32); border-top-color: rgb(32, 32, 32); border-bottom-color: rgb(32, 32, 32); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; flex-grow: 1;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="RightPanel">
+                <ui:VisualElement name="HasValidProject" style="flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="Edit Dialogue: (DialogueName)" display-tooltip-when-elided="true" name="ProjectTitle" />
+                    <EventTreeGraphView focusable="true" style="flex-grow: 1; background-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);" />
+                    <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="TransformView" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </SplitView>
+        <ui:VisualElement style="width: 400px;">
+            <ui:Label tabindex="-1" text="Event Properties" display-tooltip-when-elided="true" style="padding-left: 2px; background-color: rgb(32, 32, 32); align-items: stretch; -unity-text-align: upper-center; font-size: 14px; padding-top: 2px; padding-bottom: 2px;" />
+            <InspectorView name="PropertiesView" style="padding-left: 4px; padding-right: 4px; padding-top: 4px; padding-bottom: 4px; border-left-color: rgb(32, 32, 32); border-right-color: rgb(32, 32, 32); border-top-color: rgb(32, 32, 32); border-bottom-color: rgb(32, 32, 32); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; flex-grow: 1;" />
+        </ui:VisualElement>
+    </ui:GroupBox>
+    <ui:GroupBox style="flex-direction: row; -unity-text-align: upper-left; align-items: auto; justify-content: center;">
+        <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="ErrorMessage" style="-unity-text-align: upper-left; font-size: 10px; padding-left: 4px; padding-right: 4px; padding-top: 4px; padding-bottom: 4px; min-width: 50%; color: rgb(255, 69, 69);" />
+        <ui:Label tabindex="-1" text="SkyEngine Developed by SkyBreaker Softworks 2023. DO NOT DISTRIBUTE!" display-tooltip-when-elided="true" style="-unity-text-align: upper-right; font-size: 10px; padding-left: 4px; padding-right: 4px; padding-top: 4px; padding-bottom: 4px; flex-direction: column; align-items: stretch; align-self: auto; white-space: nowrap; min-width: 50%;" />
+    </ui:GroupBox>
+</ui:UXML>

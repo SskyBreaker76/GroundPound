@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: cd682f81463b1b74b8b492285aa52875
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - LeftStick: {fileID: 2139962975, guid: 096d9ea64a9ab0a478e8cdd4354eeabb, type: 3}
+  - RightStick: {fileID: -1667903810, guid: 096d9ea64a9ab0a478e8cdd4354eeabb, type: 3}
+  - LeftBumper: {fileID: 189619037, guid: 096d9ea64a9ab0a478e8cdd4354eeabb, type: 3}
+  - RightBumper: {fileID: 65186996, guid: 096d9ea64a9ab0a478e8cdd4354eeabb, type: 3}
+  - LeftTrigger: {fileID: -952054535, guid: 096d9ea64a9ab0a478e8cdd4354eeabb, type: 3}
+  - RightTrigger: {fileID: -254841436, guid: 096d9ea64a9ab0a478e8cdd4354eeabb, type: 3}
+  - DPadUp: {fileID: -1169665448, guid: 096d9ea64a9ab0a478e8cdd4354eeabb, type: 3}
+  - DPadLeft: {fileID: 397461946, guid: 096d9ea64a9ab0a478e8cdd4354eeabb, type: 3}
+  - DPadDown: {fileID: -163633275, guid: 096d9ea64a9ab0a478e8cdd4354eeabb, type: 3}
+  - DPadRight: {fileID: -824301736, guid: 096d9ea64a9ab0a478e8cdd4354eeabb, type: 3}
+  - North: {fileID: 553752615, guid: 096d9ea64a9ab0a478e8cdd4354eeabb, type: 3}
+  - East: {fileID: 286860992, guid: 096d9ea64a9ab0a478e8cdd4354eeabb, type: 3}
+  - South: {fileID: 1928878294, guid: 096d9ea64a9ab0a478e8cdd4354eeabb, type: 3}
+  - West: {fileID: -405041056, guid: 096d9ea64a9ab0a478e8cdd4354eeabb, type: 3}
+  executionOrder: 0
+  icon: {fileID: 2800000, guid: 854cd62b4c2ad8e419493186c528588a, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

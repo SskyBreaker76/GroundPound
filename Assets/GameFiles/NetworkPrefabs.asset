@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8322217583111003562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -571403812, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: PlayerBallPrototype
+  m_EditorClassIdentifier: 
+  AssetGuid:
+    RawGuidValue: 6eca58070665ea64797a9b124cb6ab03
+--- !u!114 &-8138379300127030773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -571403812, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: PlayerRB2DPrototype
+  m_EditorClassIdentifier: 
+  AssetGuid:
+    RawGuidValue: dbc9b57ea26fbf84b8cc14b0882fe89b
+--- !u!114 &-7400667222904547214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -571403812, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: PlayerTransformPrototype
+  m_EditorClassIdentifier: 
+  AssetGuid:
+    RawGuidValue: 3251faa3ac8a66642bf6f9e8433499da
+--- !u!114 &-7334714683228981541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -571403812, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: BallPrototype
+  m_EditorClassIdentifier: 
+  AssetGuid:
+    RawGuidValue: 61b6ef4ffff3d8f4498968869591d6bf
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -225830702, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: NetworkPrefabs
+  m_EditorClassIdentifier: 
+--- !u!114 &1255283237885981892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -571403812, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: PlayerPrototype
+  m_EditorClassIdentifier: 
+  AssetGuid:
+    RawGuidValue: e4df49d0bf125a740a2c14ab6e887572
+--- !u!114 &3852518504826362267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -571403812, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: ENT_Player
+  m_EditorClassIdentifier: 
+  AssetGuid:
+    RawGuidValue: bb2d9b04092c89c4caf4f781abec1c1e
