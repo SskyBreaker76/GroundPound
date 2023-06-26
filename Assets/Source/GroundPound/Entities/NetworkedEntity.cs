@@ -30,7 +30,7 @@ namespace Sky.GroundPound
         }
 
         private NetworkRigidbody2D m_Rigidbody;
-        protected NetworkRigidbody2D Rigidbody
+        public NetworkRigidbody2D Rigidbody
         {
             get
             {
@@ -51,7 +51,7 @@ namespace Sky.GroundPound
         {
             get
             {
-                return Rigidbody.Rigidbody.velocity;
+                return Rigidbody.ReadVelocity();
             }
             protected set
             {
@@ -63,22 +63,45 @@ namespace Sky.GroundPound
         {
             get
             {
+                List<Collider2D> MyColliders = GetComponentsInChildren<Collider2D>().ToList();
+
                 foreach (Collider2D C in Physics2D.OverlapCircleAll((Vector2)transform.position + Vector2.up * 0.49f, Collider.radius))
-                {
-                    if (C != Collider)
-                    {
+                    if (!MyColliders.Contains(C))
                         if (C.CompareTag("Platform"))
-                        {
                             if (transform.position.y > C.transform.position.y + C.bounds.size.y / 2)
                                 return true;
-                        }
+                            else
+                                return false;
                         else
                             return true;
-                    }
-                }
 
                 return false;
             }
+        }
+
+        public NetworkedEntity[] GetEntities(float Radius)
+        {
+            List<Collider2D> MyColliders = GetComponentsInChildren<Collider2D>().ToList();
+            List<NetworkedEntity> Value = new List<NetworkedEntity>();
+
+            foreach (Collider2D C in Physics2D.OverlapCircleAll((Vector2)transform.position + Vector2.up * 0.5f, Radius))
+            {
+                if (!MyColliders.Contains(C))
+                {
+                    NetworkedEntity E;
+                    if (E = C.GetComponent<NetworkedEntity>())
+                    {
+                        Value.Add(E);
+                    }
+                }
+            }
+            return Value.ToArray();
+        }
+
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+        public void RPC_ApplyForce(float ForceX, float ForceY)
+        {
+            Rigidbody.Rigidbody.AddForce(new Vector2(ForceX, ForceY), ForceMode2D.Impulse);
         }
 
         [SerializeField, Tooltip("The base movement speed of this Entity. We specify BaseMoveSpeed so that naming remains correct if an Entity can modify its move speed")] protected float m_BaseMoveSpeed = 4;

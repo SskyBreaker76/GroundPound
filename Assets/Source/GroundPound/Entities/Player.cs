@@ -36,6 +36,18 @@ namespace Sky.GroundPound
         public static Player LocalPlayer;
 
         [Header("PLAYER")]
+        public AudioClip JumpSound;
+        private Animator m_Animator;
+        protected Animator Animator
+        {
+            get
+            {
+                if (!m_Animator)
+                        m_Animator = GetComponentInChildren<Animator>();
+                
+                return m_Animator;
+            }
+        }
         private SpriteRenderer m_Renderer;
         protected SpriteRenderer Renderer
         {
@@ -48,8 +60,10 @@ namespace Sky.GroundPound
             }
         }
         
-        private bool Facing;
+        [Networked] public NetworkBool Facing { get; set; }
 
+        [Tooltip("Keep the curve's time within the range of 0-1! When evaluating the game takes the decimal value of the players health which is always between 0 and 1")]
+        public AnimationCurve KnockbackDuration = new AnimationCurve(new Keyframe(0, 1000000), new Keyframe(0.15f, 5), new Keyframe(1, 0.5f));
         public float GroundPoundDuration = 0.3f;
         public LayerMask GroundLayers;
         private Vector2 GroundPoundStart;
@@ -75,10 +89,44 @@ namespace Sky.GroundPound
 
         protected override void InputTick(GroundPoundInputData InputData, out Vector2 FinalVelocity)
         {
-            LocalPlayer = this;
-
             if (Renderer)
-                Renderer.flipX = !Facing;
+                Renderer.transform.localScale = new Vector3(Facing ? 1 : -1, 1, 1);
+
+            Vector2 TargetVelocity = Velocity;
+
+            bool Grounded = IsGrounded; // This looks odd but it's more efficient to do this because base.IsGrounded actually runs a whole function when it's retrieved
+            bool CanJump = Grounded || Time.time - LastGrounded < m_CoyoteTime;
+
+            #region Animation Behaviour
+            if (Animator)
+            {
+                switch (m_State)
+                {
+                    case PlayerState.Normal:
+                        if (!Grounded)
+                            Animator.Play("Airborne");
+                        else
+                            if (Mathf.Approximately(TargetVelocity.x, 0))
+                            Animator.Play("Idle");
+                        else
+                            Animator.Play("Run");
+                        break;
+                    case PlayerState.Dash:
+                        Animator.Play("Dash");
+                        break;
+                    case PlayerState.GroundPound:
+                        if (!Grounded)
+                            Animator.Play("GroundPound_Lp");
+                        else
+                            Animator.Play("GroundPoundLand");
+
+                        break;
+                }
+            }   
+            #endregion
+
+            if (HasInputAuthority)
+                LocalPlayer = this;
 
             if (m_State != PlayerState.GroundPound)
             {
@@ -99,11 +147,6 @@ namespace Sky.GroundPound
                     Facing = false;
                 if (Horizontal > 0)
                     Facing = true;
-
-                bool Grounded = IsGrounded; // This looks odd but it's more efficient to do this because base.IsGrounded actually runs a whole function when it's retrieved
-                bool CanJump = Grounded || Time.time - LastGrounded < m_CoyoteTime;
-
-                Vector2 TargetVelocity = Velocity;
 
                 // Please don't look. It's ugly, but it works and it's fast
                 if (DashTimer <= 0)
@@ -180,6 +223,7 @@ namespace Sky.GroundPound
 
                 TargetVelocity.x = Horizontal * m_BaseMoveSpeed;
                 FinalVelocity = TargetVelocity;
+
                 LastH = Horizontal;
             }
             else
