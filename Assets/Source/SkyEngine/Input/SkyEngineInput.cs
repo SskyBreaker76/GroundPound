@@ -82,7 +82,7 @@ namespace SkySoft.Input
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -159,7 +159,7 @@ namespace SkySoft.Input
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": ""ScaleVector2(y=-1)"",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""LookAround"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -247,7 +247,7 @@ namespace SkySoft.Input
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -258,7 +258,7 @@ namespace SkySoft.Input
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -269,7 +269,7 @@ namespace SkySoft.Input
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -280,7 +280,7 @@ namespace SkySoft.Input
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -335,7 +335,7 @@ namespace SkySoft.Input
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -441,7 +441,7 @@ namespace SkySoft.Input
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -485,7 +485,7 @@ namespace SkySoft.Input
                     ""path"": ""<Mouse>/scroll"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""NavigateMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -507,7 +507,7 @@ namespace SkySoft.Input
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""NavigateMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -518,7 +518,7 @@ namespace SkySoft.Input
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""NavigateMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -529,7 +529,7 @@ namespace SkySoft.Input
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""NavigateMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -540,7 +540,7 @@ namespace SkySoft.Input
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""NavigateMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -650,7 +650,7 @@ namespace SkySoft.Input
                     ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""Confirm"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -672,7 +672,7 @@ namespace SkySoft.Input
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""Confirm"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -683,7 +683,7 @@ namespace SkySoft.Input
                     ""path"": ""<Mouse>/forwardButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""Confirm"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -738,7 +738,7 @@ namespace SkySoft.Input
                     ""path"": ""<Mouse>/backButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -749,7 +749,7 @@ namespace SkySoft.Input
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -760,7 +760,7 @@ namespace SkySoft.Input
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -793,7 +793,7 @@ namespace SkySoft.Input
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""TabLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -826,7 +826,7 @@ namespace SkySoft.Input
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
+                    ""groups"": ""Player1_KB"",
                     ""action"": ""TabRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -869,8 +869,8 @@ namespace SkySoft.Input
     ],
     ""controlSchemes"": [
         {
-            ""name"": ""KeyboardMouse"",
-            ""bindingGroup"": ""KeyboardMouse"",
+            ""name"": ""Player1_KB"",
+            ""bindingGroup"": ""Player1_KB"",
             ""devices"": [
                 {
                     ""devicePath"": ""<Keyboard>"",
@@ -1143,13 +1143,13 @@ namespace SkySoft.Input
             }
         }
         public MenusActions @Menus => new MenusActions(this);
-        private int m_KeyboardMouseSchemeIndex = -1;
-        public InputControlScheme KeyboardMouseScheme
+        private int m_Player1_KBSchemeIndex = -1;
+        public InputControlScheme Player1_KBScheme
         {
             get
             {
-                if (m_KeyboardMouseSchemeIndex == -1) m_KeyboardMouseSchemeIndex = asset.FindControlSchemeIndex("KeyboardMouse");
-                return asset.controlSchemes[m_KeyboardMouseSchemeIndex];
+                if (m_Player1_KBSchemeIndex == -1) m_Player1_KBSchemeIndex = asset.FindControlSchemeIndex("Player1_KB");
+                return asset.controlSchemes[m_Player1_KBSchemeIndex];
             }
         }
         private int m_GamepadSchemeIndex = -1;

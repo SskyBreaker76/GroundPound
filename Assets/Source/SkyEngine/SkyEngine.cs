@@ -137,6 +137,20 @@ namespace SkySoft
             }
         }
 
+        public static float GetCurveDuration(AnimationCurve curve)
+        {
+            float duration = 0f;
+
+            for (int i = 0; i < curve.length; i++)
+            {
+                Keyframe key = curve.keys[i];
+                if (key.time > duration)
+                    duration = key.time;
+            }
+
+            return duration;
+        }
+
         public static void UpdateLocalisation(Action Complete = null)
         {
             InitializeLanguages();

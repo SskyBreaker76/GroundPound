@@ -53,27 +53,6 @@ MonoBehaviour:
     West: {fileID: 21300000, guid: 3413a30ca340391439b8ea9386a0837b, type: 3}
     Start: {fileID: 21300000, guid: d334914f3c3c9704e8ecfc4fb6abb313, type: 3}
     Select: {fileID: 21300000, guid: 67cb9535af7465747b66f1258260ab95, type: 3}
-  - Label: PS3Controller
-    InputType: 12
-    LeftStick: {fileID: 21300000, guid: 3576c7ff062543a4394282825036f4eb, type: 3}
-    LeftStickDown: {fileID: 0}
-    RightStick: {fileID: 21300000, guid: 722158e5e5e50c84d934689adda3ccc0, type: 3}
-    RightStickDown: {fileID: 0}
-    LeftBumper: {fileID: 21300000, guid: f4cdfc855c4e3aa4bb461b7fe11a245e, type: 3}
-    RightBumper: {fileID: 21300000, guid: a69b973bea630b84b80c4df5e107b2a9, type: 3}
-    LeftTrigger: {fileID: 21300000, guid: 1fe0e8a83f6adf24aa23d464148b5812, type: 3}
-    RightTrigger: {fileID: 21300000, guid: bf6941c0cd455da41a783458cf311e73, type: 3}
-    DPad: {fileID: 21300000, guid: e4ee50764d5e55f42835a62c6ac6843e, type: 3}
-    DPadUp: {fileID: 21300000, guid: 1bcbb1874fccbdf4b8449f174a4b0466, type: 3}
-    DPadLeft: {fileID: 21300000, guid: 8773fbe7e78965544a5f95ed9c42da0b, type: 3}
-    DPadDown: {fileID: 21300000, guid: b370829d1a9cd204191a08333f9abb92, type: 3}
-    DPadRight: {fileID: 21300000, guid: c1b3b165a0abd064eb8de924099860ad, type: 3}
-    North: {fileID: 21300000, guid: 602e8733f0d88c34d84e4fcb2507b416, type: 3}
-    East: {fileID: 21300000, guid: f54495ea02a43d643a7a7737907a521f, type: 3}
-    South: {fileID: 21300000, guid: f49bc4a335d2812468ad3712a120c117, type: 3}
-    West: {fileID: 21300000, guid: 71658033bb823c64d8c40d404d60661d, type: 3}
-    Start: {fileID: 21300000, guid: 2ff6f200652e96f4d810f92fe6801a7d, type: 3}
-    Select: {fileID: 21300000, guid: 3cc982f97da214c47887ad5bbd2a23af, type: 3}
   - Label: XBox360Controller
     InputType: 2
     LeftStick: {fileID: 21300000, guid: cfbde8e61d42c93409f560dc230c91c2, type: 3}

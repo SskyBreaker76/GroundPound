@@ -27,11 +27,13 @@ namespace Sky.GroundPound
     [AddComponentMenu("Ground Pound/Game Manager")]
     public class GameManager : MonoBehaviour, INetworkRunnerCallbacks
     {
+        private Dictionary<PlayerRef, NetworkObject> m_LocalSpawnedPlayers = new Dictionary<PlayerRef, NetworkObject>();
         private Dictionary<PlayerRef, NetworkObject> m_SpawnedPlayers = new Dictionary<PlayerRef, NetworkObject>();
         public static GameManager Instance;
 
         private NetworkRunner Runner;
         public int PlayerCount = 0;
+        public bool EnableGUI = true;
 
         [Header("General Settings")]
         public Camera MainCamera;
@@ -41,6 +43,15 @@ namespace Sky.GroundPound
         [Header("Session Settings")]
         public GameMode ActiveGameMode;
         public Vector2 CameraMin, CameraMax;
+        public float DeathDistance = 12;
+
+        public Vector2 MapCentre
+        {
+            get
+            {
+                return Vector2.Lerp(CameraMin, CameraMax, 0.5f);
+            }
+        }
 
         private void Awake()
         {
@@ -83,26 +94,104 @@ namespace Sky.GroundPound
             Gizmos.DrawLine(new Vector3(Max.x, Max.y), new Vector3(Max.x, Min.y));
         }
 
+        public void GetViewableArea(out Vector2 Minimum, out Vector2 Maximum)
+        {
+            float OrthoSize = MainCamera.orthographicSize * (SkyEngine.AspectRatio * 1.215f); // It just works
+
+            Minimum = new Vector2(CameraMin.x - OrthoSize, CameraMin.y - (OrthoSize / 1.775f)); // IT JUST WORKS
+            Maximum = new Vector2(CameraMax.x + OrthoSize, CameraMax.y + (OrthoSize / 1.775f)); // I T   J U S T   W O R K S
+        }
+
+        public void GetPlayableArea(out Vector2 Minimum, out Vector2 Maximum)
+        {
+            GetViewableArea(out Vector2 Min, out Vector2 Max);
+            Min -= Vector2.one * DeathDistance;
+            Max += Vector2.one * DeathDistance;
+            Minimum = Min;
+            Maximum = Max;
+        }
+
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.red;
+            Gizmos.color = Color.magenta;
 
             if (Spawns.Length > 0)
                 foreach (Transform Spawn in Spawns)
-                    SkyEngine.Gizmos.DrawCircle(Spawn.position, 1);
+                    SkyEngine.Gizmos.DrawCircle(Spawn.position, 0.25f);
+
+            Gizmos.color = Color.blue;
+            DrawBounds(CameraMin, CameraMax);
 
             if (MainCamera)
             {
-                Gizmos.color = Color.red;
-                DrawBounds(CameraMin, CameraMax);
+                GetViewableArea(out Vector2 ViewMin, out Vector2 ViewMax);
 
-                float OrthoSize = MainCamera.orthographicSize * (SkyEngine.AspectRatio * 1.215f); // It just works
-
-                Vector2 ViewMin = new Vector2(CameraMin.x - OrthoSize, CameraMin.y - (OrthoSize / 1.775f)); // IT JUST WORKS
-                Vector2 ViewMax = new Vector2(CameraMax.x + OrthoSize, CameraMax.y + (OrthoSize / 1.775f)); // I T   J U S T   W O R K S
-
-                Gizmos.color = Color.yellow;
+                Gizmos.color = Color.cyan;
                 DrawBounds(ViewMin, ViewMax);
+
+                GetPlayableArea(out ViewMin, out ViewMax);
+
+                Gizmos.color = Color.red;
+                DrawBounds(ViewMin, ViewMax);
+            }
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            SkyEngine.Gizmos.Colour = Color.white;
+            SkyEngine.Gizmos.DrawCircle(MapCentre, 0.25f);
+        }
+
+        public bool IsPlayerInBounds(NetworkObject Player)
+        {
+            Player Plr;
+
+            if (Plr = Player.GetComponent<Player>())
+            {
+                return IsPlayerInBounds(Plr);
+            }
+
+            return true;
+        }
+
+        public bool IsPlayerInBounds(Player Plr)
+        {
+            GetPlayableArea(out Vector2 Min, out Vector2 Max);
+
+            Vector2 MinNearest = Plr.NearestPoint(Min);
+            Vector2 MaxNearest = Plr.NearestPoint(Max);
+
+            return (MinNearest.x > Min.x && MaxNearest.x < Max.x &&
+                MinNearest.y > Min.y && MaxNearest.y < Max.y);
+        }
+
+        public bool IsPlayerInBounds(NetworkObject Player, out Player PlayerComponent)
+        {
+            Player Plr;
+            if (Plr = Player.GetComponent<Player>())
+            {
+                PlayerComponent = Plr;
+                return IsPlayerInBounds(Plr);
+            }
+
+            PlayerComponent = null;
+            return true;
+        }
+
+        private void Update()
+        {
+            if (!Runner) return;
+
+            if (Runner.IsServer)
+            {
+                foreach (NetworkObject Player in m_SpawnedPlayers.Values)
+                {
+                    if (!IsPlayerInBounds(Player, out Player Plr))
+                    {
+                        if (Plr.Hitpoints > 0)
+                            Plr.RPC_Kill();
+                    }
+                }
             }
         }
 
@@ -126,7 +215,7 @@ namespace Sky.GroundPound
 
         private void OnGUI()
         {
-            if (!Runner)
+            if (!Runner && EnableGUI)
             {
                 if (GUI.Button(new Rect(0, 0, 200, 40), "Host"))
                 {
@@ -138,8 +227,23 @@ namespace Sky.GroundPound
                 }
             }
         }
+        
+        public void StartHost()
+        {
+            StartGame(Fusion.GameMode.Host);
+        }
 
-        protected async void StartGame(Fusion.GameMode Mode)
+        public void StartClient()
+        {
+            StartGame(Fusion.GameMode.Client);
+        }
+
+        public void ResetLevel()
+        {
+            // TODO[Sky] Implement ResetLevel behaviour
+        }
+
+        protected async void StartGame(Fusion.GameMode Mode, string LobbyCode = "Default")
         {
             Runner = gameObject.GetComponent<NetworkRunner>();
             Runner.ProvideInput = true;
@@ -147,7 +251,7 @@ namespace Sky.GroundPound
             await Runner.StartGame(new StartGameArgs()
             {
                 GameMode = Mode,
-                SessionName = "Default",
+                SessionName = LobbyCode,
                 Scene = SceneManager.GetActiveScene().buildIndex,
                 SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
             });
