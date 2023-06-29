@@ -18,7 +18,7 @@ namespace SkySoft.Objects
         [Space]
         public bool AllowCombat = true;
         public bool EnableTimeCycle = true;
-        public E_BGMs Area;
+        public string Area;
         public float BaseBrightness = 1;
         public bool RespawnsNPCs = false;
         [Space]
@@ -88,7 +88,7 @@ namespace SkySoft.Objects
                 Debug.Log($"SceneLoaded({Scene.Area})");
                 bool Done = false;
 
-                if (Scene.Area == E_BGMs.Retain || (ActiveDefinition != null && ActiveDefinition.Area == Scene.Area))
+                if (Scene.Area == "Retain" || (ActiveDefinition != null && ActiveDefinition.Area == Scene.Area))
                 {
                     Debug.Log("Retain current music");
 
@@ -103,9 +103,9 @@ namespace SkySoft.Objects
                     }
                 }
 
-                if (Scene.Area != E_BGMs.None)
+                if (Scene.Area != "None")
                 {
-                    if (ActiveDefinition != null && ActiveDefinition.Area != E_BGMs.Title)
+                    if (ActiveDefinition != null && ActiveDefinition.Area != "Title")
                     {
                         Debug.Log($"ActiveDefinition = {ActiveDefinition.Area}");
                     }

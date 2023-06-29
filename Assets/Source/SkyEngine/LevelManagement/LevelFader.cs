@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace SkySoft.LevelManagement
 {
@@ -11,6 +13,13 @@ namespace SkySoft.LevelManagement
 
         public float LoadScreenWait = 1;
         public GameObject LoadingWidget;
+        public Image Background;
+        public CanvasGroup TargetGroup;
+
+        public void FadeAlpha(float Target, float Duration, Action OnComplete)
+        {
+            LeanTween.alphaCanvas(TargetGroup, Target, Duration).setOnComplete(OnComplete);
+        }
 
         private void Update()
         {
@@ -24,6 +33,9 @@ namespace SkySoft.LevelManagement
             }
 
             LoadingWidget.SetActive(false);
+
+            TargetGroup.blocksRaycasts = TargetGroup.alpha > 0;
+            TargetGroup.interactable = TargetGroup.alpha > 0;
         }
 
         private void Awake()
@@ -32,7 +44,7 @@ namespace SkySoft.LevelManagement
             {
                 Instance = this;
                 DontDestroyOnLoad(gameObject);
-                LevelManager.Fader = GetComponentInChildren<UnityEngine.UI.Image>();
+                LevelManager.Fader = Background;
             }
             else
             {

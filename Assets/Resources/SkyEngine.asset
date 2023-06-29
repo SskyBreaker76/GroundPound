@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: SkyEngine
   m_EditorClassIdentifier: 
   SaveMenu: {fileID: 0}
+  InitialStatus: Logging In
   EnableSteam: 0
-  EnableDiscord: 0
+  SteamProperties:
+    AppID: 0
+  EnableDiscord: 1
+  DiscordProperties:
+    m_ClientID: 1122471816380809239
   DefaultGlyphPack: 3
   LeftStick: {fileID: 21300000, guid: 6c94aebf21d7dae4e89848c18cc1a9ec, type: 3}
   RightStick: {fileID: 21300000, guid: 72323306cf9535d4eb4313802416213e, type: 3}

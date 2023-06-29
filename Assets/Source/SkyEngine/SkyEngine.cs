@@ -14,6 +14,9 @@ using SkySoft.Generated;
 using SkySoft.Objects;
 using UnityEngine.Rendering.Universal;
 using System.Linq;
+using Discord;
+using SkySoft.Discord;
+using SkySoft.Steam;
 
 namespace SkySoft.Interaction
 {
@@ -28,6 +31,62 @@ namespace SkySoft.Interaction
 
 namespace SkySoft
 {
+    public enum E_AccountType
+    {
+        Discord,
+        Steam,
+        Other
+    }
+
+    [Serializable]
+    public class UserInformation
+    {
+        public E_AccountType AccountType;
+        public string Username;
+        public Sprite Avatar;
+
+        public UserInformation(E_AccountType AccountType, uint AvatarResolution = 512, Action<UserInformation> OnComplete = null)
+        {
+            this.AccountType = AccountType;
+
+            switch (AccountType) 
+            {
+                case E_AccountType.Discord:
+                    if (!DiscordAPI.Initialized)
+                        DiscordAPI.Initialize();
+
+                    User U = DiscordAPI.UserManager.GetCurrentUser();
+                    Username = U.Username;
+                    DiscordAPI.GetCurrentUserAvatar(Avatar =>
+                    {
+                        this.Avatar = Sprite.Create(Avatar, new UnityEngine.Rect(0, 0, Avatar.width, Avatar.height), Vector2.one * 0.5f);
+
+                        if (OnComplete != null) OnComplete(this);
+                    }, Reason => Debug.Log($"Failed to get avatar: {Reason}"), (int)AvatarResolution);
+                    break;
+                case E_AccountType.Steam:
+                    if (!Steamhook.Initialized)
+                        Steamhook.Initialize(null, async () =>
+                        {
+                            Username = SteamClient.Name;
+                            await Steamhook.GetProfilePicture(Steamhook.LocalUserID, Texture => { this.Avatar = Sprite.Create(Texture, new UnityEngine.Rect(0, 0, Texture.width, Texture.height), Vector2.one * 0.5f); });
+                        });
+                    else
+                    {
+                        Username = SteamClient.Name;
+                        Steamhook.GetProfilePicture(Steamhook.LocalUserID, Texture => { this.Avatar = Sprite.Create(Texture, new UnityEngine.Rect(0, 0, Texture.width, Texture.height), Vector2.one * 0.5f); });
+                    }
+
+                    if (OnComplete != null) OnComplete(this);
+                    break;
+                default:
+                    Username = "No Account";
+                    Avatar = null;
+                    break;
+            }
+        }
+    }
+
     public enum E_CharacterBackground
     {
         Ranger,
@@ -80,6 +139,8 @@ namespace SkySoft
 
     public static class SkyEngine
     {
+        public static Action<float> OnLoadingProgress = V => { };
+
         public static float AspectRatio => (float)Screen.width / Screen.height;
 
         public static LocalisationFile ActiveLocalisation { get; private set; }
@@ -565,8 +626,11 @@ namespace SkySoft
         {
             try
             {
-                Discord.DiscordAPI.UpdateActivity(MinorText, MajorText, true, UseFile ? $"{File.Properties.Name}, Level {File.Level} {File.Race}" : "");
-                Steam.Steamhook.SetRichPresence($"{MajorText}{(string.IsNullOrEmpty(MinorText) ? "" : $" - {MinorText}")}");
+                if (Properties.EnableDiscord)
+                    Discord.DiscordAPI.UpdateActivity(MinorText, MajorText, true, UseFile ? $"{File.Properties.Name}, Level {File.Level} {File.Race}" : "");
+                
+                if (Properties.EnableSteam)
+                    Steam.Steamhook.SetRichPresence($"{MajorText}{(string.IsNullOrEmpty(MinorText) ? "" : $" - {MinorText}")}");
             } catch (System.Exception Ex) { Debug.LogError(Ex); }
         }
 

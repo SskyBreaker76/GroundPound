@@ -9,6 +9,7 @@ using SkySoft.Interaction;
 using SkySoft;
 using Steamworks;
 using SkySoft.IO;
+using JetBrains.Annotations;
 
 [System.Serializable]
 public class DLCObject
@@ -84,13 +85,29 @@ public class SkyEngineGlyphPack
     }
 }
 
+[System.Serializable]
+public class DiscordProperties
+{
+    [SerializeField] private string m_ClientID;
+    public long ClientID => long.Parse(m_ClientID);
+}
+
+[System.Serializable]
+public class SteamProperties 
+{
+    public int AppID;
+}
+
 [CreateAssetMenu(fileName = "SkyEngine", menuName = "SkyEngine/Properties")]
 public class SkyEngineProperties : ScriptableObject
 {
     public GameObject SaveMenu;
 
+    public string InitialStatus = "Logging In";
     public bool EnableSteam;
+    public SteamProperties SteamProperties;
     public bool EnableDiscord;
+    public DiscordProperties DiscordProperties;
 
     private Steamworks.InputType PreviousDefaultGlyphs;
     public Steamworks.InputType DefaultGlyphPack;

@@ -256,7 +256,7 @@ MonoBehaviour:
   JumpInputDuration: 1.1
   DashLength: 0.175
   DashDelay: 1
-  AirMovementSensitivity: 3
+  AirMovementSensitivity: 0
   JumpForceThisInput: 1
   Horizontal: 0
   Jump: 0

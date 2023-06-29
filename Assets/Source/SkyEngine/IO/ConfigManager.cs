@@ -19,10 +19,8 @@ namespace SkySoft.IO
                 Data = FileManager.ReadConfigFile();
             }
 
-            if (!Data.Sections.ContainsSection(Section))
-                Data.Sections.AddSection(Section);
-            if (!Data[Section].ContainsKey(Key))
-                Data[Section].AddKey(Key, DefaultValue.ToString());
+            if (!Data.Sections.ContainsSection(Section) || !Data[Section].ContainsKey(Key))
+                SetOption(Key, DefaultValue, Section);
 
             return int.Parse(Data[Section][Key]);
         }

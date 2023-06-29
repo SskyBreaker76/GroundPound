@@ -146,28 +146,19 @@ namespace SkySoft.LevelManagement
         /// <param name="Colour"></param>
         /// <param name="CustomColour"></param>
         /// <param name="OnComplete"></param>
-        public static async void FadeoutScreen(FadeColour Colour, Color CustomColour, Action OnComplete, float Duration = 1)
+        public static void FadeoutScreen(FadeColour Colour, Color CustomColour, Action OnComplete, float Duration = 1)
         {
             if (Colour == FadeColour.White)
                 CustomColour = Color.white;
             else if (Colour == FadeColour.Black)
                 CustomColour = Color.black;
 
-            float Progress = 0;
+            Color TargetColour = CustomColour;
+            TargetColour.a = 1;
 
-            Color ColourA = CustomColour;
-            Color ColourB = CustomColour;
-            ColourA.a = 0;
-            ColourB.a = 1;
+            Fader.color = TargetColour;
 
-            while (Progress < 1)
-            {
-                Progress += Time.unscaledDeltaTime / Duration;
-                Fader.color = Color.Lerp(ColourA, ColourB, Progress);
-                await Task.Yield();
-            }
-
-            OnComplete();
+            LevelFader.Instance.FadeAlpha(1, Duration, OnComplete);
         }
 
         /// <summary>
@@ -175,10 +166,9 @@ namespace SkySoft.LevelManagement
         /// </summary>
         /// <param name="Colour"></param>
         /// <param name="OnComplete"></param>
-        public static async void FadeinScreen(FadeColour Colour, Action OnComplete, float Duration = 1)
+        public static void FadeinScreen(FadeColour Colour, Action OnComplete, float Duration = 1)
         {
             FadeinScreen(Colour, Color.white, OnComplete, Duration);
-            while (Fader.color.a > 0) await Task.Yield();
         }
 
         /// <summary>
@@ -187,31 +177,22 @@ namespace SkySoft.LevelManagement
         /// <param name="Colour"></param>
         /// <param name="CustomColour"></param>
         /// <param name="OnComplete"></param>
-        public static async void FadeinScreen(FadeColour Colour, Color CustomColour, Action OnComplete, float Duration = 1)
+        public static void FadeinScreen(FadeColour Colour, Color CustomColour, Action OnComplete, float Duration = 1)
         {
             if (Colour == FadeColour.White)
                 CustomColour = Color.white;
             else if (Colour == FadeColour.Black)
                 CustomColour = Color.black;
 
-            float Progress = 0;
+            Color TargetColour = CustomColour;
+            TargetColour.a = 1;
 
-            Color ColourA = CustomColour;
-            Color ColourB = CustomColour;
-            ColourA.a = 1;
-            ColourB.a = 0;
+            Fader.color = TargetColour;
 
-            while (Progress < 1)
-            {
-                Progress += Time.unscaledDeltaTime / Duration;
-                Fader.color = Color.Lerp(ColourA, ColourB, Progress);
-                await Task.Yield();
-            }
-
-            OnComplete();
+            LevelFader.Instance.FadeAlpha(0, Duration, OnComplete);
         }
 
-        public static async void LoadLevel(string LevelName, FadeColour FadeColour, Action OnComplete, PlayerFile LoadedSave = null)
+        public static void LoadLevel(string LevelName, FadeColour FadeColour, Action OnComplete, PlayerFile LoadedSave = null, Color CustomColour = default)
         {
             LoadStartTime = Time.time * 10; // Realistically no load should take this long
             IsLoadingLevel = true;
@@ -233,7 +214,7 @@ namespace SkySoft.LevelManagement
             }
             else
             {
-                if (!SkyEngine.LoadPositions)
+                if (!SkyEngine.LoadPositions && SkyEngine.PlayerEntity)
                 {
                     SkyEngine.NextWriteAsTmp = true;
                     (SkyEngine.PlayerEntity).Serialize();
@@ -241,39 +222,44 @@ namespace SkySoft.LevelManagement
             }
 
             Debug.Log($"LoadLevel({LevelName}, {FadeColour})");
-            bool DoneFade = false;
-            FadeoutScreen(FadeColour, () => { DoneFade = true; });
 
-            Debug.Log("FadeoutScreen");
-            while (!DoneFade) await Task.Yield();
-
-            Debug.Log("LoadLevel");
-            AsyncOperation LoadOperation = SceneManager.LoadSceneAsync(SkyEngine.Levels.Scenes[LevelName]);
-            LoadStartTime = Time.time;            
-
-            while (LoadOperation != null && LoadOperation.progress < 1) await Task.Yield();
-
-            LoadStartTime = Time.time * 1000;
-
-            Time.timeScale = 1; // Unpause the game if it's paused
-
-            SceneDefinition SceneDef = UnityEngine.Object.FindObjectOfType<SceneDefinition>();
-
-            await Task.Delay(500);
-
-            if (SceneDef)
+            FadeoutScreen(FadeColour, async () => 
             {
-                await Task.Delay(1000);
-            }
+                Debug.Log("LoadLevel");
+                AsyncOperation LoadOperation = SceneManager.LoadSceneAsync(SkyEngine.Levels.Scenes[LevelName]);
+                LoadStartTime = Time.time;
+                float ProgressLastTick = 0;
 
-            await Task.Delay(500);
+                while (LoadOperation != null && LoadOperation.progress < 1)
+                {
+                    if (ProgressLastTick != LoadOperation.progress)
+                    {
+                        SkyEngine.OnLoadingProgress(LoadOperation.progress);
+                    }
+                    await Task.Yield(); // This prevents excessive freezing
+                }
 
-            Debug.Log("FadeinScreen");
-            DoneFade = false;
-            FadeinScreen(FadeColour, () => { DoneFade = true; });
+                LoadStartTime = Time.time * 1000;
 
-            IsLoadingLevel = false;
-            OnComplete();
+                Time.timeScale = 1; // Unpause the game if it's paused
+
+                SceneDefinition SceneDef = UnityEngine.Object.FindObjectOfType<SceneDefinition>();
+
+                await Task.Delay(500);
+
+                if (SceneDef)
+                {
+                    await Task.Delay(1000);
+                }
+
+                await Task.Delay(500);
+
+                FadeinScreen(FadeColour, () =>
+                {
+                    IsLoadingLevel = false;
+                    OnComplete();
+                });
+            });
         }
 
         public static async void LoadLevel(int Level, FadeColour FadeColour, Action OnComplete)

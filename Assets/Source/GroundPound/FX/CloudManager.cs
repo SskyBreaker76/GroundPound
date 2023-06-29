@@ -3,9 +3,12 @@
  */
 
 using SkySoft;
+using System;
 using System.Collections;
+using System.Runtime.Versioning;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Random = UnityEngine.Random;
 
 namespace Sky.GroundPound
 {
@@ -33,10 +36,19 @@ namespace Sky.GroundPound
 
         [Header("Visuals")]
         public Gradient ColourOverTime = new Gradient();
-        public float MinimumCloudLife = 6;
-        public float MaximumCloudLife = 24;
+        public float CloudLifetime = 24;
         public float CloudMinimumSpeed = 1;
         public float CloudMaximumSpeed = 1.5f;
+
+        public int StartClouds = 12;
+
+        private void Awake()
+        {
+            for (int I = 0; I < StartClouds; I++)
+            {
+                SpawnCloud(true);
+            }
+        }
 
         private void OnDrawGizmosSelected()
         {
@@ -44,41 +56,34 @@ namespace Sky.GroundPound
             SkyEngine.Gizmos.DrawWireCube(transform.position, new Vector3(SpawnArea.x, SpawnArea.y, 0.001f));
         }
 
-        private IEnumerator HandleCloud(SpriteRenderer Cloud, SpriteCollection Sprites, float Depth)
+        private int TargetSprite;
+
+        private IEnumerator HandleCloud(SpriteRenderer Cloud, float Depth)
         {
-            float CloudLifeTime = Random.Range(MinimumCloudLife, MaximumCloudLife);
+            float CloudLifeTime = CloudLifetime;
             float CloudSpeed = Mathf.Lerp(CloudMaximumSpeed, CloudMinimumSpeed, Depth);
             float CurrentTime = 0;
-            float FrameCounter = Sprites.SecondsPerFrame;
-            int TargetSprite = 0;
 
             while (true)
             {
-                Cloud.sprite = Sprites.Sprites[TargetSprite];
-
-                if (FrameCounter < 0)
-                {
-                    TargetSprite++;
-                    if (TargetSprite >= Sprites.Sprites.Length)
-                    {
-                        TargetSprite = 0;
-                    }
-                    FrameCounter = Sprites.SecondsPerFrame;
-                }
-
-                FrameCounter -= Time.fixedDeltaTime;
-
                 float V = CurrentTime / CloudLifeTime;
 
                 Cloud.transform.position += new Vector3(CloudSpeed * Time.fixedDeltaTime, 0, 0);
                 Cloud.color = ColourOverTime.Evaluate(V);
 
                 CurrentTime += Time.fixedDeltaTime;
+                
+                if (!GameManager.Instance.IsSpriteInBounds(Cloud) && CurrentTime > CloudLifetime)
+                {
+                    Destroy(Cloud.gameObject);
+                    break;
+                }
+
                 yield return new WaitForFixedUpdate();
             }
         }
 
-        private void SpawnCloud()
+        private void SpawnCloud(bool InitialSpawn = false)
         {
             int Attempts = 0;
 
@@ -91,8 +96,13 @@ namespace Sky.GroundPound
 
             float V = Random.value;
 
-            Vector3 Position = transform.position + new Vector3(Random.Range(-SpawnArea.x, SpawnArea.x) / 2, Random.Range(-SpawnArea.y, SpawnArea.y) / 2, V);
-            
+            Vector3 Position = transform.position;
+
+            if (InitialSpawn)
+                Position += new Vector3(Random.Range(-SpawnArea.x, SpawnArea.x), Random.Range(-SpawnArea.y, SpawnArea.y), V * 2) / 2;
+            else
+                Position += new Vector3(-SpawnArea.x, Random.Range(-SpawnArea.y, SpawnArea.y), V * 2) / 2;
+
             SpriteCollection ChosenCloud = CloudSprites[Random.Range(0, CloudSprites.Length)];
             foreach (Collider2D C in Physics2D.OverlapBoxAll(Position, ChosenCloud.CloudSize, 0))
             {
@@ -115,6 +125,11 @@ namespace Sky.GroundPound
             R.material = Mat;
             R.sprite = ChosenCloud.Sprites[0];
 
+            AnimatedElement Animator = Cloud.AddComponent<AnimatedElement>();
+            Animator.FrameDuration = 0.5f;
+            Animator.Frames = ChosenCloud.Sprites;
+            Animator.SetFrame(Random.Range(0, CloudSprites.Length));
+
             BoxCollider2D Collider = Cloud.AddComponent<BoxCollider2D>();
             Collider.offset = ChosenCloud.CloudCentre;
             Collider.size = ChosenCloud.CloudSize;
@@ -122,7 +137,7 @@ namespace Sky.GroundPound
             Cloud.tag = "Cloud";
             Cloud.layer = LayerMask.NameToLayer("Cloud");
 
-            StartCoroutine(HandleCloud(R, ChosenCloud, V));
+            StartCoroutine(HandleCloud(R, V));
         }
 
         private void Update()

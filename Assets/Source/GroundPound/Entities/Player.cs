@@ -93,6 +93,13 @@ namespace Sky.GroundPound
         public override void OnDefeat()
         {
             Transform Effect = Instantiate(DeathParticle, transform.position, Quaternion.identity).transform;
+            GameManager.Instance.GetViewableArea(out Vector2 Min, out Vector2 Max);
+
+            Vector2 Position = Effect.position;
+            Position.x = Mathf.Clamp(Position.x, Min.x, Max.x);
+            Effect.eulerAngles = new Vector3(-90, 0, 0);
+
+            Effect.position = Position;
 
             if (Renderer)
             {
@@ -104,7 +111,7 @@ namespace Sky.GroundPound
                 }
             }
 
-            Effect.LookAt(GameManager.Instance.MapCentre);
+            Rigidbody.Rigidbody.simulated = false;
             GameManager.Instance.ResetLevel();
         }
 
@@ -267,7 +274,7 @@ namespace Sky.GroundPound
                     if (Grounded)
                         TargetVelocity.x = Horizontal * m_BaseMoveSpeed;
                     else
-                        TargetVelocity.x += (Horizontal * m_BaseMoveSpeed) * (Time.fixedDeltaTime * 2);
+                        TargetVelocity.x += (Horizontal * m_BaseMoveSpeed) * (Time.fixedDeltaTime * AirMovementSensitivity);
                 }
                 else
                 {

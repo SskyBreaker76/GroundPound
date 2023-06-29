@@ -15,7 +15,7 @@ MonoBehaviour:
   GenerateJson: 0
   Language: en-uk
   DisplayName: English
-  GameName: ERINHEIM
+  GameName: Ground Pound
   Graphs:
   - GraphID: _System_SaveGame
     Nodes:
@@ -305,17 +305,17 @@ MonoBehaviour:
     - Key: introduction
       Text: Intro
     - Key: map000
-      Text: Namsan Coastline
+      Text: Prototyping Area
     - Key: map001
-      Text: Orysmar Beach
+      Text: The Plains
     - Key: map002
-      Text: Namsan Plains
+      Text: The Winter
     - Key: map003
-      Text: SpyHouse
+      Text: The Eruption
     - Key: map004
-      Text: Rhondyn Desert
+      Text: The Desert
     - Key: map005
-      Text: Aguen Highway
+      Text: The Jungle
   - Name: stat
     Strings:
     - Key: level

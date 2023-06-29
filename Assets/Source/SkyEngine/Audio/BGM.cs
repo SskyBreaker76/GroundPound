@@ -71,10 +71,10 @@ namespace SkySoft.Audio
             }
         }
 
-        private static AudioSource ActiveAudioSource;
+        public static AudioSource ActiveAudioSource;
 
+        [Button]
         public bool GenerateScript;
-        private bool FadingOut;
         private static bool PlayingCombatMus;
 
         private void OnValidate()
@@ -129,39 +129,12 @@ namespace SkySoft.Audio
         /// </summary>
         /// <param name="FadeDuration"></param>
         /// <returns></returns>
-        public async void FadeoutBGM(float FadeDuration, Action OnComplete)
+        public void FadeoutBGM(float FadeDuration, Action OnComplete)
         {
-            bool Fading = true;
-
-            if (GameInstance.Main)
+            LeanTween.alpha(LeanTween.tweenEmpty, 0, FadeDuration).setOnUpdate((float V) =>
             {
-                GameInstance.Main.StartCoroutine(EFadeoutBGM(FadeDuration, () => { Fading = false; OnComplete(); }));
-
-                while (Fading) await Task.Yield();
-            }
-            else
-            {
-                if (ActiveAudioSource)
-                    ActiveAudioSource.volume = 0;
-                Fading = false;
-                OnComplete();
-            }
-        }
-
-        private IEnumerator EFadeoutBGM(float FadeDuration, Action OnComplete)
-        {
-            FadingOut = true;
-
-            while (ActiveAudioSource.volume > 0)
-            {
-                yield return new WaitForFixedUpdate(); // This should fix the issue of super-fast transitions when the computer stutters
-                ActiveAudioSource.volume -= Time.fixedUnscaledDeltaTime / (FadeDuration / (ConfigManager.GetOption("MusicVolume", 10, "Audio") / 10f));
-            }
-
-            ActiveAudioSource.Stop();
-
-            FadingOut = false;
-            OnComplete();
+                ActiveAudioSource.volume = V;
+            }).setOnComplete(OnComplete);
         }
 
         /// <summary>
@@ -171,7 +144,7 @@ namespace SkySoft.Audio
         /// <param name="InCombat">Decides whether to play the BGM or BattleBGM.</param>
         /// <param name="Key">Which BGM you want to play.</param>
         /// <returns></returns>
-        public async void StartBGM(string Key, Action OnComplete, bool InCombat = false, float FadeDuration = 1, bool DoFadeIn = false)
+        public void StartBGM(string Key, Action OnComplete, bool InCombat = false, float FadeDuration = 1, bool DoFadeIn = false)
         {
             Debug.Log($"StartBGM({Key})");
 
@@ -181,49 +154,64 @@ namespace SkySoft.Audio
                 {
                     Debug.Log("There is an AudioSource");
 
-                    bool Faded = false;
-                    FadeoutBGM(FadeDuration, () => { Faded = true; });
+                    if (ActiveAudioSource.clip)
+                    {
+                        if (ActiveAudioSource.clip == (InCombat ? Areas[Key].BattleBGM : Areas[Key].BGM))
+                        {
+                            OnComplete();
+                            return;
+                        }
+                    }
 
-                    Debug.Log("Fading out BGM");
-
-                    while (!Faded) await Task.Yield();
-
-                    Debug.Log("Fade complete");
+                    FadeoutBGM(FadeDuration, () => 
+                    {
+                        StartTheMusic(Key, OnComplete, InCombat, DoFadeIn);
+                    });
                 }
-
-                if (!ActiveAudioSource)
-                {
-                    AudioSource Src = new GameObject("MusicPlayer").AddComponent<AudioSource>();
-                    Src.ignoreListenerPause = true;
-                    Src.bypassEffects = true;
-                    Src.bypassListenerEffects = true;
-                    Src.bypassReverbZones = true;
-                    Src.transform.parent = Parent;
-                    ActiveAudioSource = Src;
-                }
-
-                CurrentTrackVolumeMultiplier = InCombat ? (Areas[Key].BattleBGM == null ? BattleBGMVolume : Areas[Key].BattleBGMVolume) : Areas[Key].BGMVolume;
-                if (!DoFadeIn)
-                    ActiveAudioSource.volume = ((ConfigManager.GetOption("MusicVolume", 10, "Audio") / 10f) * VolumeMultiplier) * CurrentTrackVolumeMultiplier;
                 else
-                    ActiveAudioSource.volume = 0;
-
-                ActiveAudioSource.pitch = InCombat ? (Areas[Key].BattleBGM == null ? BattleBGMPitch : Areas[Key].BattleBGMPitch) : Areas[Key].BGMPitch;
-                ActiveAudioSource.loop = true;
-                ActiveAudioSource.clip = InCombat ? (Areas[Key].BattleBGM == null ? BattleBGM : Areas[Key].BattleBGM) : Areas[Key].BGM;
-                if (ActiveAudioSource.clip != null)
-                    ActiveAudioSource.Play();
-
-                OnComplete();
+                {
+                    StartTheMusic(Key, OnComplete, InCombat, DoFadeIn);
+                }
             }
+        }
+
+        private void StartTheMusic(string Key, Action OnComplete, bool InCombat, bool DoFadeIn = false)
+        {
+            if (!ActiveAudioSource)
+            {
+                AudioSource Src = new GameObject("MusicPlayer").AddComponent<AudioSource>();
+                Src.ignoreListenerPause = true;
+                Src.bypassEffects = true;
+                Src.bypassListenerEffects = true;
+                Src.bypassReverbZones = true;
+                Src.transform.parent = Parent;
+                ActiveAudioSource = Src;
+            }
+
+            CurrentTrackVolumeMultiplier = InCombat ? (Areas[Key].BattleBGM == null ? BattleBGMVolume : Areas[Key].BattleBGMVolume) : Areas[Key].BGMVolume;
+            if (!DoFadeIn)
+                ActiveAudioSource.volume = ((ConfigManager.GetOption("MusicVolume", 10, "Audio") / 10f) * VolumeMultiplier) * CurrentTrackVolumeMultiplier;
+            else
+                ActiveAudioSource.volume = 0;
+
+            ActiveAudioSource.pitch = InCombat ? (Areas[Key].BattleBGM == null ? BattleBGMPitch : Areas[Key].BattleBGMPitch) : Areas[Key].BGMPitch;
+            ActiveAudioSource.loop = true;
+            ActiveAudioSource.clip = InCombat ? (Areas[Key].BattleBGM == null ? BattleBGM : Areas[Key].BattleBGM) : Areas[Key].BGM;
+            if (ActiveAudioSource.clip != null)
+                ActiveAudioSource.Play();
+
+            OnComplete();
         }
 
         private void Update()
         {
-            if (ActiveAudioSource && !FadingOut)
+            if (ActiveAudioSource)
             {
                 ActiveAudioSource.volume = Mathf.MoveTowards(ActiveAudioSource.volume, ((ConfigManager.GetOption("MusicVolume", 10, "Audio") / 10f) * VolumeMultiplier) * CurrentTrackVolumeMultiplier, Time.unscaledDeltaTime / 1);
             }
+
+            if (!ActiveAudioSource.isPlaying)
+                ActiveAudioSource.Play();
         }
 
         private static bool AllowCombatSwap = true;

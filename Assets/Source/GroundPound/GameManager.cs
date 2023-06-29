@@ -165,6 +165,16 @@ namespace Sky.GroundPound
                 MinNearest.y > Min.y && MaxNearest.y < Max.y);
         }
 
+        public bool IsSpriteInBounds(SpriteRenderer Sprite)
+        {
+            GetPlayableArea(out _, out Vector2 Max);
+
+            Vector3 MaxNearest = Sprite.transform.position + Sprite.bounds.max;
+
+            return (MaxNearest.x < Max.x &&
+                MaxNearest.y < Max.y);
+        }
+
         public bool IsPlayerInBounds(NetworkObject Player, out Player PlayerComponent)
         {
             Player Plr;
