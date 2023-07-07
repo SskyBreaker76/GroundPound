@@ -37,8 +37,8 @@ MonoBehaviour:
   South: {fileID: 21300000, guid: 44b7c5aac1bb51e4f9a01d182bd81468, type: 3}
   West: {fileID: 21300000, guid: 3413a30ca340391439b8ea9386a0837b, type: 3}
   m_Gamepads:
-  - Label: PS4Controller
-    InputType: 5
+  - Label: Unknown
+    InputType: 0
     LeftStick: {fileID: 21300000, guid: 6c94aebf21d7dae4e89848c18cc1a9ec, type: 3}
     LeftStickDown: {fileID: 0}
     RightStick: {fileID: 21300000, guid: 72323306cf9535d4eb4313802416213e, type: 3}
@@ -98,90 +98,6 @@ MonoBehaviour:
     East: {fileID: 21300000, guid: 0460fa68ef4be194abc547c50d56275b, type: 3}
     South: {fileID: 21300000, guid: aac8113a71d87044284da4afdce10895, type: 3}
     West: {fileID: 21300000, guid: eadd901543de68e41bc9702109e7259b, type: 3}
-    Start: {fileID: 21300000, guid: 2a32f370f343a264b90e49aaf018dff2, type: 3}
-    Select: {fileID: 21300000, guid: bcef22d97096807469ddee0558089843, type: 3}
-  - Label: SteamController
-    InputType: 1
-    LeftStick: {fileID: 21300000, guid: 2d00d289abae9e54f84ec4fe7cc21584, type: 3}
-    LeftStickDown: {fileID: 0}
-    RightStick: {fileID: 21300000, guid: bcb6e8041346b944d96d8ca48d3736b3, type: 3}
-    RightStickDown: {fileID: 0}
-    LeftBumper: {fileID: 21300000, guid: 9e2e20da55780e044aa3b1a29d07a499, type: 3}
-    RightBumper: {fileID: 21300000, guid: ba87f8bea0c7ca14bb4ebcd55df96cf1, type: 3}
-    LeftTrigger: {fileID: 21300000, guid: 1e3e77aa0be0e8c49a3930b5a74d23cc, type: 3}
-    RightTrigger: {fileID: 21300000, guid: dbc43fd956c6b5543a1c7a65e0324335, type: 3}
-    DPad: {fileID: 21300000, guid: 2d00d289abae9e54f84ec4fe7cc21584, type: 3}
-    DPadUp: {fileID: 21300000, guid: 8de978dfd10eca8459bb0adc45640c63, type: 3}
-    DPadLeft: {fileID: 21300000, guid: db6138be593d7a64088288fa97f9f58d, type: 3}
-    DPadDown: {fileID: 21300000, guid: 9b52230fb9752574daf6e352546c27f5, type: 3}
-    DPadRight: {fileID: 21300000, guid: 1b3899ad566599740974ebcb99354b3a, type: 3}
-    North: {fileID: 21300000, guid: 9b5130fade51a124689de32cea2c7b48, type: 3}
-    East: {fileID: 21300000, guid: 460ff8f92ffff0744b88b6a61290c9a2, type: 3}
-    South: {fileID: 21300000, guid: a5903eb6d8d9397458c52e753001454d, type: 3}
-    West: {fileID: 21300000, guid: 0fcf67a9a9e5e0047adca03921d3f236, type: 3}
-    Start: {fileID: 21300000, guid: e7b6ef4fa92c8db4092f6c8eda7e2248, type: 3}
-    Select: {fileID: 21300000, guid: adce9c3ae09f43f4ca5d36256b4ca8c7, type: 3}
-  - Label: SwitchJoyConPair
-    InputType: 8
-    LeftStick: {fileID: 21300000, guid: 058127c9dc45a0241b262592d0447584, type: 3}
-    LeftStickDown: {fileID: 0}
-    RightStick: {fileID: 21300000, guid: 59ed308fa98d8ed4f9ca7ead6ecbc655, type: 3}
-    RightStickDown: {fileID: 0}
-    LeftBumper: {fileID: 21300000, guid: 035def63926265d4cbae8e8ff6adeea9, type: 3}
-    RightBumper: {fileID: 21300000, guid: 8a4e8bd8b2095224a90a4059e297d738, type: 3}
-    LeftTrigger: {fileID: 21300000, guid: 1d7d55cebd97d0c49a2a28c3145c26ac, type: 3}
-    RightTrigger: {fileID: 21300000, guid: 3c3c23063f774d141bae33cd7d282032, type: 3}
-    DPad: {fileID: 21300000, guid: 752def73c0f8fc847bc0b64dd839f424, type: 3}
-    DPadUp: {fileID: 21300000, guid: fc25ba923c49f25409eb1b09411c98a0, type: 3}
-    DPadLeft: {fileID: 21300000, guid: dd5b6dbba847a52489bd8e176ec86a11, type: 3}
-    DPadDown: {fileID: 21300000, guid: 0adb086646a86244bb75a31733a4d5fb, type: 3}
-    DPadRight: {fileID: 21300000, guid: f52fbdda241a66e48b54d4f08ff65d2c, type: 3}
-    North: {fileID: 21300000, guid: a58f06a3ec4ac7c43ba86ba2c60e9296, type: 3}
-    East: {fileID: 21300000, guid: a1a3c9621aff8ca4cbb3aa97a514f8b9, type: 3}
-    South: {fileID: 21300000, guid: bb4b38814f56c6647a5d47314a037448, type: 3}
-    West: {fileID: 21300000, guid: ac0a490b33025624ca4624fa43eb7b05, type: 3}
-    Start: {fileID: 21300000, guid: a400fad089192f5459d2063784381ea6, type: 3}
-    Select: {fileID: 21300000, guid: 76112663bbe6fab48ab218798237b04a, type: 3}
-  - Label: Unknown
-    InputType: 0
-    LeftStick: {fileID: 21300000, guid: 549db81837388ae4ba9ab3dff8ab62ec, type: 3}
-    LeftStickDown: {fileID: 0}
-    RightStick: {fileID: 21300000, guid: b8cee97c1ebb5644d9c21182da4e3c05, type: 3}
-    RightStickDown: {fileID: 21300000, guid: 34d0b05d18481ef4db24bd3756126c13, type: 3}
-    LeftBumper: {fileID: 21300000, guid: 1c7f52a54ae91ab46b26fef356ba99a8, type: 3}
-    RightBumper: {fileID: 21300000, guid: fa44d0ab76d003d41bc3bb305e27ed2c, type: 3}
-    LeftTrigger: {fileID: 21300000, guid: daae498c74641f24889e1c2004348c43, type: 3}
-    RightTrigger: {fileID: 21300000, guid: d5f50d0540a14364f915fc2cf13db1d9, type: 3}
-    DPad: {fileID: 21300000, guid: ecc9d2f884fb1434e852a10bd682884e, type: 3}
-    DPadUp: {fileID: 21300000, guid: 66d77590709a283448626fe7c96dc637, type: 3}
-    DPadLeft: {fileID: 21300000, guid: 565d58eb01bd4d84597d968dc9d940b6, type: 3}
-    DPadDown: {fileID: 21300000, guid: 233c9445bc3cfd445b1099e647b4d3ed, type: 3}
-    DPadRight: {fileID: 21300000, guid: d136ce4d2b4515e4ca133cf25e451db6, type: 3}
-    North: {fileID: 21300000, guid: 85bbfa8b11d826d4795c257275ef8606, type: 3}
-    East: {fileID: 21300000, guid: 6b1b52e01d4f38a488d913afab1df85a, type: 3}
-    South: {fileID: 21300000, guid: 9cfda42673f0aaa47b3ed19af6751e5f, type: 3}
-    West: {fileID: 21300000, guid: 85bbfa8b11d826d4795c257275ef8606, type: 3}
-    Start: {fileID: 21300000, guid: 4379c535e40c2494ba2f5112a8b05c14, type: 3}
-    Select: {fileID: 21300000, guid: 1784cd7f3496706408b6a63ca6fc4387, type: 3}
-  - Label: GenericGamepad
-    InputType: 4
-    LeftStick: {fileID: 21300000, guid: 5de673f8cfc28374cafb1c863a967f85, type: 3}
-    LeftStickDown: {fileID: 0}
-    RightStick: {fileID: 21300000, guid: 1f473445f3f57914c8c474aaa4d09aa6, type: 3}
-    RightStickDown: {fileID: 0}
-    LeftBumper: {fileID: 21300000, guid: 1b368b7d87a5f424c97d9b9b546122dc, type: 3}
-    RightBumper: {fileID: 21300000, guid: 44c15ad17ee2fdf43863d555a7e4fb22, type: 3}
-    LeftTrigger: {fileID: 21300000, guid: f3bf827d09d8eb141b588167ff8982b0, type: 3}
-    RightTrigger: {fileID: 21300000, guid: d5f50d0540a14364f915fc2cf13db1d9, type: 3}
-    DPad: {fileID: 21300000, guid: 58fd12612802de64aa031154381133eb, type: 3}
-    DPadUp: {fileID: 21300000, guid: 66d77590709a283448626fe7c96dc637, type: 3}
-    DPadLeft: {fileID: 21300000, guid: 565d58eb01bd4d84597d968dc9d940b6, type: 3}
-    DPadDown: {fileID: 21300000, guid: 233c9445bc3cfd445b1099e647b4d3ed, type: 3}
-    DPadRight: {fileID: 21300000, guid: d136ce4d2b4515e4ca133cf25e451db6, type: 3}
-    North: {fileID: 21300000, guid: 5608974e0c685d34a9dfdf584b8e5729, type: 3}
-    East: {fileID: 21300000, guid: 8e5b5ceb4dd5663479b7eabbc1c11fe5, type: 3}
-    South: {fileID: 21300000, guid: bb9ef8b9d0814c4488bcd42e29b612fd, type: 3}
-    West: {fileID: 21300000, guid: 31e7df418e367b643b5feb267e4e5d18, type: 3}
     Start: {fileID: 21300000, guid: 2a32f370f343a264b90e49aaf018dff2, type: 3}
     Select: {fileID: 21300000, guid: bcef22d97096807469ddee0558089843, type: 3}
   VibrationIntensity: 1

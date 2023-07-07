@@ -332,7 +332,7 @@ namespace SkySoft.Input
                 {
                     ""name"": """",
                     ""id"": ""375bcbe0-3af5-4520-baff-eed517110876"",
-                    ""path"": ""<Keyboard>/leftShift"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Player1_KB"",

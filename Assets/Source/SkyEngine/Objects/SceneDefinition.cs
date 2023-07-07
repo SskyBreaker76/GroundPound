@@ -159,12 +159,7 @@ namespace SkySoft.Objects
 
         private void Update()
         {
-            // TODO[Sky] Re-Implement SkyEngineRP
-            try
-            {
-                PostProcessPass.m_Materials.bloomComposite.SetFloat("_Scene_BaseBrightness", Properties.BaseBrightness);
-            }
-            catch { }
+
         }
 
 #if UNITY_EDITOR

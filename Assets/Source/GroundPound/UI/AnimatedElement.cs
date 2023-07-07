@@ -2,6 +2,7 @@
     Developed by Sky MacLennan
  */
 
+using Sky.GroundPound;
 using SkySoft;
 using SkySoft.Audio;
 using System.Collections;
@@ -37,11 +38,10 @@ public class AnimatedElement : MonoBehaviour
 
     public Sprite[] Frames;
     private int m_CurrentFrame;
+    public float FrameDuration;
 
-    public float FrameDuration = 0.5f;
-
-    float TimeLastFrame = 0;
-    bool DoneFrameSwap;
+    private float TimeLastFrame = 0;
+    private bool DoneFrameSwap;
 
     [DisplayOnly] public float Time;
 
@@ -50,24 +50,44 @@ public class AnimatedElement : MonoBehaviour
         m_CurrentFrame = Mathf.Clamp(Frame, 0, Frames.Length - 1);
     }
 
-    private void FixedUpdate()
+    private float Addition = 0;
+
+    private void StepFrame()
+    {
+        m_CurrentFrame++;
+        if (m_CurrentFrame >= Frames.Length)
+            m_CurrentFrame = 0;
+        DoneFrameSwap = true;
+        Addition += Game.BeatLength * FrameDuration;
+    }
+
+    private void Update()
     {
         AudioSource S;
 
         if (S = BGM.ActiveAudioSource)
         {
             Time = S.time - Mathf.Floor(S.time);
-            float UpscaledTime = Time * 10;
-            Time = Mathf.Floor(UpscaledTime) / 10f;
+            bool ResetV = Time < TimeLastFrame;
+            TimeLastFrame = Time;
+            float UpscaledTime = Time * 100;
+            Time = Mathf.Floor(UpscaledTime) / 100f;
 
-            if (Time % FrameDuration == 0)
+            if (ResetV)
+            {
+                if (Game.BeatLength * FrameDuration % 1 == 0)
+                {
+                    StepFrame();
+                }
+
+                Addition = Time * Game.BeatLength;
+            }
+
+            if (Time > ((Game.BeatLength * FrameDuration) + Addition))
             {
                 if (!DoneFrameSwap)
                 {
-                    m_CurrentFrame++;
-                    if (m_CurrentFrame >= Frames.Length)
-                        m_CurrentFrame = 0;
-                    DoneFrameSwap = true;
+                    StepFrame();
                 }
             }
             else

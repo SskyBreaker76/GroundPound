@@ -72,11 +72,22 @@ namespace Sky.GroundPound
                 Cloud.color = ColourOverTime.Evaluate(V);
 
                 CurrentTime += Time.fixedDeltaTime;
-                
-                if (!GameManager.Instance.IsSpriteInBounds(Cloud) && CurrentTime > CloudLifetime)
+
+                if (GameManager.Instance)
                 {
-                    Destroy(Cloud.gameObject);
-                    break;
+                    if (!GameManager.Instance.IsSpriteInBounds(Cloud) && CurrentTime > CloudLifetime)
+                    {
+                        Destroy(Cloud.gameObject);
+                        break;
+                    }
+                }
+                else
+                {
+                    if (CurrentTime > 128)
+                    {
+                        Destroy(Cloud.gameObject);
+                        break;
+                    }
                 }
 
                 yield return new WaitForFixedUpdate();
@@ -126,7 +137,7 @@ namespace Sky.GroundPound
             R.sprite = ChosenCloud.Sprites[0];
 
             AnimatedElement Animator = Cloud.AddComponent<AnimatedElement>();
-            Animator.FrameDuration = 0.5f;
+            Animator.FrameDuration = 1;
             Animator.Frames = ChosenCloud.Sprites;
             Animator.SetFrame(Random.Range(0, CloudSprites.Length));
 
@@ -136,6 +147,9 @@ namespace Sky.GroundPound
 
             Cloud.tag = "Cloud";
             Cloud.layer = LayerMask.NameToLayer("Cloud");
+
+            if (R == null)
+                Debug.Log("NO RENDERER");
 
             StartCoroutine(HandleCloud(R, V));
         }

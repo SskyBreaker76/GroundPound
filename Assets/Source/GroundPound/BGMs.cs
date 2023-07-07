@@ -4,6 +4,8 @@ namespace SkySoft.Generated
 	{
 		None,
 		Retain,
-		Title
+		Title,
+		TitleAlt,
+		SnowArea
 	}
 }

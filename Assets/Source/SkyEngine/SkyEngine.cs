@@ -269,6 +269,11 @@ namespace SkySoft
                     return Localisation;
             }
 
+            LocalisationFile F;
+
+            if (F = LocalisationFile.ReadFromDisc(Language))
+                return F;
+
             return null;
         }
 

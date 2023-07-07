@@ -15,7 +15,7 @@ MonoBehaviour:
   GenerateJson: 0
   Language: en-uk
   DisplayName: English
-  GameName: Ground Pound
+  GameName: <color=#FF5C00>Ground</color> <color=#009CFF>Pound</color>
   Graphs:
   - GraphID: _System_SaveGame
     Nodes:
@@ -170,52 +170,36 @@ MonoBehaviour:
       Text: No
   - Name: title
     Strings:
-    - Key: start
-      Text: Press
-    - Key: newgame
-      Text: New Game
-    - Key: newgame_dialogue
-      Text: Are you sure you wish to start a new adventure?
-    - Key: continue
-      Text: Continue
-    - Key: load
-      Text: Load Game
+    - Key: play
+      Text: Play
     - Key: options
-      Text: Options
+      Text: Settings
     - Key: quit
       Text: Quit Game
-    - Key: quit_dialogue
-      Text: Are you sure you wish to leave Erinheim?
-    - Key: continue
-      Text: Slot
   - Name: options
     Strings:
     - Key: language
       Text: Language
-    - Key: posteffects
-      Text: Post Effects
-    - Key: graphics
+    - Key: tab_audio
+      Text: Audio
+    - Key: tab_graphics
       Text: Graphics
-    - Key: mainvolume
-      Text: Main Volume
-    - Key: musicvolume
+    - Key: tab_controls
+      Text: Bindings
+    - Key: tab_custom
+      Text: Customisation
+    - Key: audio_volume
+      Text: Master Volume
+    - Key: audio_musicvolume
       Text: Music Volume
-    - Key: cameraspeed
-      Text: Camera Sensitivity
-    - Key: physicsbones
-      Text: Physics Bones
-    - Key: advancedik
-      Text: Advanced IK (<color=yellow>EXPERIMENTAL</color>)
-    - Key: inputdevice
-      Text: Input Device
-    - Key: toggle_on
-      Text: On
-    - Key: toggle_off
-      Text: Off
-    - Key: toggle_true
-      Text: True
-    - Key: toggle_false
-      Text: False
+    - Key: graphics_fullscreen
+      Text: Fullscreen
+    - Key: customisation_titlemusic
+      Text: Classic Music
+    - Key: customisation_pointercolour
+      Text: Use Light Cursor
+    - Key: controls_controllertype
+      Text: Controller Type
   - Name: charedit
     Strings:
     - Key: gender

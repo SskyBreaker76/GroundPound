@@ -39,7 +39,7 @@ namespace Sky.GroundPound
             while (!DiscordAPI.Initialized)
                 await Task.Delay(10);
 
-            Game.Initialize(60, () =>
+            Game.Initialize(128, () =>
             {
                 LeanTween.alphaCanvas(Veil, 0, 1).setOnComplete(() => { Veil.blocksRaycasts = false; Veil.interactable = false; });
 

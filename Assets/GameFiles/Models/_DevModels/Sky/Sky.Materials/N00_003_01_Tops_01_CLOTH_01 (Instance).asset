@@ -8,16 +8,21 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: N00_003_01_Tops_01_CLOTH_01 (Instance)
-  m_Shader: {fileID: -6465566751694194690, guid: f6fabb48bfd29a74c8078de43e0a7ea2, type: 3}
+  m_Shader: {fileID: 4800000, guid: 1a97144e4ad27a04aafd70f7b915cedb, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - MTOON_OUTLINE_COLOR_FIXED
+  - MTOON_OUTLINE_WIDTH_WORLD
+  - _ALPHATEST_ON
+  - _NORMALMAP
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2450
+  stringTagMap:
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -63,25 +68,11 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _AlphaToMask: 1
     - _BlendMode: 1
     - _BumpScale: 1
-    - _CharacterShadingDistance: 0.1
-    - _CharacterShadingOffset: 10
     - _CullMode: 0
     - _Cutoff: 0.5
     - _DebugMode: 0
@@ -95,8 +86,6 @@ Material:
     - _OutlineScaledMaxDistance: 1
     - _OutlineWidth: 0.08
     - _OutlineWidthMode: 1
-    - _QueueControl: 0
-    - _QueueOffset: 0
     - _ReceiveShadowRate: 1
     - _RimFresnelPower: 100
     - _RimLift: 0.1
@@ -111,7 +100,6 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Colour: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0.2745098, g: 0.090196066, b: 0.12549016, a: 1}
     - _RimColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}

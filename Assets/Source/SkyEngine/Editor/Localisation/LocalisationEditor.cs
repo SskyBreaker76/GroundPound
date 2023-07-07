@@ -302,6 +302,8 @@ public class LocalisationEditor : EditorWindow
 
     public override void SaveChanges()
     {
+        CommonTextKeyAttributeDrawer.HasGotAllKeys = false;
+
         foreach (LocalisationFile File in DirtyFiles)
         {
             EditorUtility.SetDirty(File);

@@ -131,9 +131,9 @@ namespace SkySoft.Audio
         /// <returns></returns>
         public void FadeoutBGM(float FadeDuration, Action OnComplete)
         {
-            LeanTween.alpha(LeanTween.tweenEmpty, 0, FadeDuration).setOnUpdate((float V) =>
+            LeanTween.value(((ConfigManager.GetOption("MusicVolume", 10, "Audio") / 10f) * VolumeMultiplier) * CurrentTrackVolumeMultiplier, 0, FadeDuration).setOnUpdate(Value =>
             {
-                ActiveAudioSource.volume = V;
+                ActiveAudioSource.volume = Value;
             }).setOnComplete(OnComplete);
         }
 

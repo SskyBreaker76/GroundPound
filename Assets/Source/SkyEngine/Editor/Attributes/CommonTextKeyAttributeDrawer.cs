@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 [CustomPropertyDrawer(typeof(CommonTextKeyAttribute))]
 public class CommonTextKeyAttributeDrawer : PropertyDrawer
 {
-    private bool HasGotAllKeys = false;
+    public static bool HasGotAllKeys = false;
     private List<string> Keys = new List<string>();
 
     PopupField<string> KeySelector;
@@ -28,17 +28,30 @@ public class CommonTextKeyAttributeDrawer : PropertyDrawer
             HasGotAllKeys = true;
         }
 
-        if (attribute is CommonTextKeyAttribute Attribute && property.propertyType == SerializedPropertyType.String)
-        {            
-            KeySelector = new PopupField<string>("Target", Keys, Keys.Contains(property.stringValue) ? Keys.IndexOf(property.stringValue) : 0);
-            
-            KeySelector.RegisterValueChangedCallback(Event =>
+        if (Keys.Count <= 0)
+        {
+            HasGotAllKeys = false;
+        }
+        else
+        {
+
+            if (string.IsNullOrEmpty(property.stringValue) || !Keys.Contains(property.stringValue))
             {
-                property.stringValue = Event.newValue;
-                EditorUtility.SetDirty(property.serializedObject.targetObject);
-                Undo.RecordObject(property.serializedObject.targetObject, "ModifyKey");
-            });
-            Root.Add(KeySelector);
+                property.stringValue = Keys[0];
+            }
+
+            if (attribute is CommonTextKeyAttribute Attribute && property.propertyType == SerializedPropertyType.String)
+            {
+                KeySelector = new PopupField<string>("Target", Keys, Keys.Contains(property.stringValue) ? Keys.IndexOf(property.stringValue) : 0);
+
+                KeySelector.RegisterValueChangedCallback(Event =>
+                {
+                    property.stringValue = Event.newValue;
+                    EditorUtility.SetDirty(property.serializedObject.targetObject);
+                    Undo.RecordObject(property.serializedObject.targetObject, "ModifyKey");
+                });
+                Root.Add(KeySelector);
+            }
         }
 
         return Root;

@@ -37,6 +37,7 @@ namespace Sky.GroundPound
         public static Player LocalPlayer;
 
         [Header("PLAYER")]
+        public int Team;
         public GameObject DeathParticle;
         [Space]
         public AudioClip JumpSound;
@@ -89,6 +90,14 @@ namespace Sky.GroundPound
         private float LastH;
 
         private bool DashRight, DashLeft;
+        public int MaxAirDashes = 1;
+        private int AirDashes = 1;
+
+        public override void Spawned()
+        {
+            base.Spawned();
+            UpdateAppearance();
+        }
 
         public override void OnDefeat()
         {
@@ -112,13 +121,28 @@ namespace Sky.GroundPound
             }
 
             Rigidbody.Rigidbody.simulated = false;
-            GameManager.Instance.ResetLevel();
+        }
+
+        private Vector2 DashSpeed = Vector2.zero;
+        private Vector2 PreDashVelocity = Vector2.zero;
+
+        public void UpdateAppearance()
+        {
+            if (Renderer) // Don't waste bandwidth on a who somehow doesn't have a SpriteRenderer
+            {
+                GameManager.GetPlayerInformation(Object.InputAuthority, (Index, Team, Score) =>
+                {
+                    Renderer.color = GameManager.GetTeamColour(Team); // Handling colours locally means that if players have colourblind filters enabled the player can be tinted the correct colour without affecting everyone else
+                });
+            }
         }
 
         protected override void InputTick(GroundPoundInputData InputData, out Vector2 FinalVelocity, out bool DoGravity)
         {
             if (Renderer)
+            {
                 Renderer.transform.localScale = new Vector3(Facing ? 1 : -1, 1, 1);
+            }
 
             Vector2 TargetVelocity = BaseVelocity;
             Vector2 GroundPosition = Vector2.zero;
@@ -161,48 +185,46 @@ namespace Sky.GroundPound
             if (HasInputAuthority)
                 LocalPlayer = this;
 
+            if (m_State == PlayerState.Dash)
+            {
+                if (Time.time - LastDash > DashLength)
+                {
+                    TargetVelocity -= DashSpeed * 2;
+                    m_State = PlayerState.Normal;
+                }
+                else
+                {
+                    FinalVelocity = DashSpeed * 3;
+                    DoGravity = false;
+                    return;
+                }
+            }            
+
             if (m_State != PlayerState.GroundPound && m_State != PlayerState.GroundPoundLAND)
             {
                 m_GroundPoundV = 0;
 
-                Horizontal = m_State == PlayerState.Normal ? InputData.Direction : DashDirection;
+                Horizontal = InputData.Direction;
                 Jump = InputData.Jump && HasReachedApex;
 
                 bool DashInput = Time.time - LastDash > DashDelay && InputData.Dash;
 
-                if (DashInput)
-                {
-                    DashRight = Horizontal > 0;
-                    DashLeft = Horizontal < 0;
-                }
-
-                if (Horizontal < 0)
+                if (PointerHandler.Instance.transform.position.x < transform.position.x)
                     Facing = false;
-                if (Horizontal > 0)
+                if (PointerHandler.Instance.transform.position.x > transform.position.x)
                     Facing = true;
-
+                
                 // Please don't look. It's ugly, but it works and it's fast
                 if (DashTimer <= 0)
                 {
                     m_State = PlayerState.Normal;
-
-                    bool DoDash = false;
-
-                    if (DashRight)
+                                        
+                    if (DashInput && AirDashes > 0)
                     {
-                        DashDirection = 1;
-                        DoDash = true;
-                        DashRight = false;
-                    }
-                    if (DashLeft)
-                    {
-                        DashDirection = -1;
-                        DoDash = true;
-                        DashLeft = false;
-                    }
+                        AirDashes--;
+                        Vector2 Heading = PointerHandler.Instance.transform.position - transform.position;
+                        DashSpeed = (Heading / Heading.magnitude) * m_MoveSpeed;
 
-                    if (DoDash)
-                    {
                         if (Audio && DashSound)
                         {
                             Audio.PlayOneShot(DashSound);
@@ -219,6 +241,7 @@ namespace Sky.GroundPound
 
                 if (Grounded)
                 {
+                    AirDashes = MaxAirDashes;
                     LastGrounded = Time.time;
                 }
                 if (CanJump)

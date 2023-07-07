@@ -8,11 +8,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 namespace Sky.GroundPound
 {
     public class Game : MonoBehaviour
     {
+        public static int BGM_Tempo = 120;
+        public static float BeatLength => 60f / BGM_Tempo;
+
         public static Action AnimationTick = () => { };
 
         private static Game m_Instance;
@@ -20,6 +25,9 @@ namespace Sky.GroundPound
         {
             get
             {
+                if (!Application.isPlaying)
+                    return null;
+
                 if (!m_Instance)
                 {
                     Initialize();
@@ -55,16 +63,42 @@ namespace Sky.GroundPound
             }
         }
 
-        public static int CurrentTempo = 120;
-        public static float BeatLength = 60f / CurrentTempo;
+        public static bool LastUsedDevice { get; private set; }
 
         private void Update()
         {
-            if (BGM.ActiveAudioSource)
+            if (Keyboard.current != null)
             {
-                if (BGM.ActiveAudioSource.time % BeatLength == 0)
+                if (Keyboard.current.anyKey.wasPressedThisFrame)
                 {
-                    AnimationTick();
+                    LastUsedDevice = false;
+                }
+                if (Mouse.current != null)
+                {
+                    foreach (InputControl Control in Mouse.current.allControls)
+                    {
+                        if (Control is ButtonControl Button && Button.wasPressedThisFrame)
+                        {
+                            LastUsedDevice = false;
+                            break;
+                        }
+                    }
+
+                    if (Mouse.current.delta.ReadValue().normalized.magnitude > 0.5f)
+                    {
+                        LastUsedDevice = false;
+                    }
+                }
+                if (Gamepad.current != null)
+                {
+                    foreach (InputControl Control in Gamepad.current.allControls)
+                    {
+                        if (Control is ButtonControl Button && Button.wasPressedThisFrame)
+                        {
+                            LastUsedDevice = true;
+                            break;
+                        }
+                    }
                 }
             }
         }

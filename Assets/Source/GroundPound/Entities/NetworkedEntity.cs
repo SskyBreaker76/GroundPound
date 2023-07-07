@@ -182,7 +182,7 @@ namespace Sky.GroundPound
         #region Hitpoint Variables
         [Header("Hitpoints")]
         [SerializeField, Tooltip("Disable this if you don't want this Entity to be destructable")] protected bool m_Mortal = true;
-        [SerializeField, Tooltip("The amount of HitPoints this Entity will have at the start of its life")] protected int m_StartHitpoints = 1;
+        [Tooltip("The amount of HitPoints this Entity will have at the start of its life")] public int StartHitpoints = 1;
         [DisplayOnly] public int Hitpoints = 1;
         [DisplayOnly] public bool IsLocalPlayer;
         public float KnockbackReductionSpeed = 2;
@@ -192,13 +192,12 @@ namespace Sky.GroundPound
 
         protected virtual void OnValidate()
         {
-            Hitpoints = m_StartHitpoints;
+            Hitpoints = StartHitpoints;
         }
 
         [Rpc(RpcSources.StateAuthority, RpcTargets.InputAuthority)]
         public virtual void RPC_Kill()
         {
-            Hitpoints = 0;
             OnDefeat();
         }
 
@@ -231,7 +230,13 @@ namespace Sky.GroundPound
         /// </remarks>
         public override void FixedUpdateNetwork()
         {
-            m_KnockbackForce = Vector2.MoveTowards(m_KnockbackForce, Vector2.zero, Time.fixedDeltaTime * (KnockbackReductionSpeed * KnockbackDuration.Evaluate(Hitpoints / (float)m_StartHitpoints)));
+            if (GameManager.PauseMatch)
+            {
+                Rigidbody.Rigidbody.velocity = Vector2.zero;
+                return;
+            }
+
+            m_KnockbackForce = Vector2.MoveTowards(m_KnockbackForce, Vector2.zero, Time.fixedDeltaTime * (KnockbackReductionSpeed * KnockbackDuration.Evaluate(Hitpoints / (float)StartHitpoints)));
 
             if (GetInput(out GroundPoundInputData InputData))
             {

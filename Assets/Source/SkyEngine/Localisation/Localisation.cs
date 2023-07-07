@@ -71,7 +71,7 @@ namespace SkySoft
                                 Langs.Add(Lang);
                             }
                         }
-                        catch { continue; }
+                        catch (System.Exception E) { Debug.Log(E); continue; }
                     }
 
                     m_Languages = Langs.ToArray();

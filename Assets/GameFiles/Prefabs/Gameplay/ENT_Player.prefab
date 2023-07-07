@@ -46,6 +46,7 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3106828567025705671}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -69,9 +70,9 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.25}
-  serializedVersion: 2
   m_Radius: 0.25
 --- !u!114 &7629448428885395871
 MonoBehaviour:
@@ -173,8 +174,8 @@ MonoBehaviour:
   m_JumpHeight: 3
   m_JumpAnimationScale: 0.75
   m_Mortal: 1
-  m_StartHitpoints: 10
-  Hitpoints: 10
+  StartHitpoints: 1
+  Hitpoints: 1
   IsLocalPlayer: 0
   KnockbackReductionSpeed: 2
   KnockbackDuration:
@@ -210,6 +211,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  Team: 0
   DeathParticle: {fileID: 1673492244192829371, guid: 65a5772e91e84c845ba5ea2436ea6b1d, type: 3}
   JumpSound: {fileID: 8300000, guid: e0049a7377299094092efae55457c332, type: 3}
   DashSound: {fileID: 8300000, guid: f39b2b7cf952a1f439fcf18d2c8e0baa, type: 3}
@@ -658,7 +660,7 @@ MonoBehaviour:
   GroundPoundUpwardForce: 3
 --- !u!95 &8616927834550646023
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -672,6 +674,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1

@@ -25,4 +25,18 @@ MonoBehaviour:
     BattleBGM: {fileID: 0}
     BattleBGMVolume: 0
     BattleBGMPitch: 0
+  - Key: TitleAlt
+    BGM: {fileID: 8300000, guid: bfcee63535810cc4caa0e497dea95eb9, type: 3}
+    BGMVolume: 1
+    BGMPitch: 1
+    BattleBGM: {fileID: 0}
+    BattleBGMVolume: 0
+    BattleBGMPitch: 0
+  - Key: SnowArea
+    BGM: {fileID: 8300000, guid: 7947d37adad3b9b4d8cf53f88b0a4a64, type: 3}
+    BGMVolume: 1
+    BGMPitch: 1
+    BattleBGM: {fileID: 0}
+    BattleBGMVolume: 0
+    BattleBGMPitch: 0
   GenerateScript: 0
