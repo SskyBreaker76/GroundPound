@@ -8,6 +8,7 @@ using UnityEngine.Rendering.Universal;
 using SkySoft.IO;
 using System;
 using UnityEngine.Networking;
+using System.Threading.Tasks;
 
 namespace SkySoft.Discord
 {
@@ -15,7 +16,22 @@ namespace SkySoft.Discord
     public class DiscordAPI : MonoBehaviour
     {
         public static DiscordAPI Instance { get; private set; }
+        private static long m_LocalUserID;
+        public static long LocalUserID
+        {
+            get
+            {
+                if (m_LocalUserID == 0)
+                {
+                    try
+                    {
+                        m_LocalUserID = UserManager.GetCurrentUser().Id;
+                    } catch { }
+                }
 
+                return m_LocalUserID;
+            }
+        }
         private static global::Discord.Discord Discord;
         private static ActivityManager ActivityManager;
         public static UserManager UserManager;
@@ -75,7 +91,7 @@ namespace SkySoft.Discord
 
         private static bool HasDiscord;
 
-        public static void Initialize()
+        public static async void Initialize()
         {
             if (!SkyEngine.Properties.EnableDiscord)
                 return;

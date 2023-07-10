@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -23,6 +24,14 @@ namespace Sky.GroundPound
         public Text UserName;
         [Space]
         [SceneReference, Tooltip("This is very temporary")] public string StartLevel;
+        public UnityEvent OnHostStarted;
+        public UnityEvent OnHostSuccess;
+
+        public void StartGame()
+        {
+            OnHostStarted.Invoke();
+            MatchMaker.Instance.StartGame(Fusion.GameMode.Host, OnHostSuccess.Invoke);
+        }
 
         public void LoadLevel()
         {

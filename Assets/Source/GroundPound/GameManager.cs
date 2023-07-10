@@ -2,6 +2,8 @@
     Developed by Sky MacLennan
  */
 
+// TODO[Sky]: Please convert the GameManager so it ONLY manages gameplay, no Network Lobby code >:{
+
 using Discord;
 using Fusion;
 using Fusion.Sockets;
@@ -332,28 +334,21 @@ namespace Sky.GroundPound
         private void Awake()
         {
             Instance = this;
-        }
 
-        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
-        protected virtual void RPC_RequestServerInf(PlayerRef Requester)
-        {
-            PlayerCount = m_SpawnedPlayers.Count;
-            RPC_ReceiveServerInf(Requester, (int)ActiveGameMode, PlayerCount);
-        }
-
-        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-        protected virtual void RPC_ReceiveServerInf(PlayerRef Target, int GameMode, int PlayerCount)
-        {
-            if (Runner.LocalPlayer == Target) // We don't want to execute any code on non-target machines
+            if (ActiveGameMode != GameMode.Custom)
             {
-                ActiveGameMode = (GameMode)GameMode;
-                this.PlayerCount = PlayerCount;
-
-                // Here's where we spawn our player. Only doing this because we KNOW our player is going to be the right one
-                if (PlayerCount < Spawns.Length)
-                    Runner.Spawn(PlayerPrefab, Spawns[PlayerCount].position, Quaternion.identity, Target);
-                else
-                    Debug.Log("Spawn Spectator"); // TODO[Sky] Implement spectator system
+                switch (ActiveGameMode)
+                {
+                    case GameMode.Standard:
+                        GameSettings = GameModeSettings.StandardMode;
+                        break;
+                    case GameMode.SuperSaiyan:
+                        GameSettings = GameModeSettings.SuperSaiyan;
+                        break;
+                    case GameMode.ThreeInARow:
+                        GameSettings = GameModeSettings.ThreeInARow;
+                        break;
+                }    
             }
         }
 
@@ -612,8 +607,13 @@ namespace Sky.GroundPound
 
         protected async void StartGame(Fusion.GameMode Mode, string LobbyCode = "Default")
         {
-            Runner = gameObject.GetComponent<NetworkRunner>();
-            Runner.ProvideInput = true;
+            Runner = MatchMaker.MainRunner;
+
+            if (!Runner)
+            {
+                Runner = gameObject.AddComponent<NetworkRunner>();
+                Runner.ProvideInput = true;
+            }
 
             await Runner.StartGame(new StartGameArgs()
             {
@@ -624,52 +624,85 @@ namespace Sky.GroundPound
             });
         }
 
-        public void PlayerJoined(PlayerRef Player)
+
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+        protected virtual void RPC_RequestServerInf(PlayerRef Requester)
         {
-            if (Player == Runner.LocalPlayer)
-                RPC_RequestServerInf(Player);
+            PlayerCount = m_SpawnedPlayers.Count;
+            RPC_ReceiveServerInf(Requester, (int)ActiveGameMode, PlayerCount);
+        }
+
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        protected virtual void RPC_ReceiveServerInf(PlayerRef Target, int GameMode, int PlayerCount)
+        {
+            if (Runner.LocalPlayer == Target) // We don't want to execute any code on non-target machines
+            {
+                ActiveGameMode = (GameMode)GameMode;
+                this.PlayerCount = PlayerCount;
+
+                // Here's where we spawn our player. Only doing this because we KNOW our player is going to be the right one
+                if (PlayerCount < Spawns.Length)
+                    Runner.Spawn(PlayerPrefab, Spawns[PlayerCount].position, Quaternion.identity, Target);
+                else
+                    Debug.Log("Spawn Spectator"); // TODO[Sky] Implement spectator system
+            }
+        }
+
+        private void SpawnAllPlayers()
+        {
+            if (Runner.IsServer)
+            {
+                foreach (NetworkObject Value in  m_SpawnedPlayers.Values)
+                {
+                    Runner.Despawn(Value);
+                }
+
+                m_SpawnedPlayers.Clear();
+
+                foreach (PlayerRef Player in Teams.Keys)
+                {
+                    if (!m_SpawnedPlayers.ContainsKey(Player))
+                    {
+                        Vector3 SpawnPosition = Spawns[m_SpawnedPlayers.Count].position;
+                        NetworkObject PlayerObject = Runner.Spawn(PlayerPrefab, SpawnPosition, inputAuthority: Player);
+
+                        GroundPound.Player Plr;
+                        if (Plr = PlayerObject.GetComponent<Player>())
+                        {
+                            if (Teams.ContainsKey(Player))
+                            {
+                                Plr.Team = Teams[Player];
+                            }
+                            else
+                            {
+                                int TeamACount = 0;
+                                int TeamBCount = 0;
+                                for (int I = 0; I < NetworkedGameProperties.Instance.TeamCount; I++)
+                                {
+                                    if (I == 0)
+                                        TeamACount++;
+                                    else // It's safe to assume if someone's not on Team 0, they're on Team 1
+                                        TeamBCount++;
+                                }
+
+                                if (TeamACount < TeamBCount) // If there are less players on Team A (Orange), put the player there
+                                    Plr.Team = 0;
+                                else if (TeamBCount < TeamACount) // If there are less players on Team B (Blue), put the player there
+                                    Plr.Team = 1;
+                                else
+                                    Plr.Team = UnityEngine.Random.Range(0, 2); // If both teams are equal size, chuck the player on a random one
+                            }
+                        }
+
+                        m_SpawnedPlayers.Add(Player, PlayerObject);
+                    }
+                }
+            }
         }
 
         public void OnPlayerJoined(NetworkRunner Runner, PlayerRef Player)
         {
-            if (Runner.IsServer)
-            {
-                if (m_SpawnedPlayers.Count < Spawns.Length)
-                {
-                    Vector3 SpawnPosition = Spawns[m_SpawnedPlayers.Count].position;
-                    NetworkObject PlayerObject = Runner.Spawn(PlayerPrefab, SpawnPosition, inputAuthority: Player);
-
-                    GroundPound.Player Plr;
-                    if (Plr = PlayerObject.GetComponent<Player>()) 
-                    {
-                        if (Teams.ContainsKey(Player))
-                        {
-                            Plr.Team = Teams[Player];
-                        }
-                        else
-                        {
-                            int TeamACount = 0;
-                            int TeamBCount = 0;
-                            for (int I = 0; I < Teams.Count; I++)
-                            {
-                                if (I == 0)
-                                    TeamACount++;
-                                else // It's safe to assume if someone's not on Team 0, they're on Team 1
-                                    TeamBCount++;
-                            }
-
-                            if (TeamACount < TeamBCount) // If there are less players on Team A (Orange), put the player there
-                                Plr.Team = 0;
-                            else if (TeamBCount < TeamACount) // If there are less players on Team B (Blue), put the player there
-                                Plr.Team = 1;
-                            else
-                                Plr.Team = UnityEngine.Random.Range(0, 2); // If both teams are equal size, chuck the player on a random one
-                        }
-                    }
-
-                    m_SpawnedPlayers.Add(Player, PlayerObject);
-                }
-            }
+            RPC_RequestServerInf(Player);
         }
 
         public void OnPlayerLeft(NetworkRunner Runner, PlayerRef Player)

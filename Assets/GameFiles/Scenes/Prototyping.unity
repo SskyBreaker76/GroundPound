@@ -275,6 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
+  _Players: []
   _TeamCount: 0
 --- !u!4 &257867410
 Transform:
@@ -1955,7 +1956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BGM: 4
-  Tempo: 140
+  Tempo: 70
 --- !u!4 &1805768035
 Transform:
   m_ObjectHideFlags: 0

@@ -15,6 +15,10 @@ namespace Sky.GroundPound
 {
     public class Game : MonoBehaviour
     {
+        /// <summary>
+        /// The absolute maximum amount of players a room can contain.
+        /// </summary>
+        public const int MaxRoomSize = 16;
         public static int BGM_Tempo = 120;
         public static float BeatLength => 60f / BGM_Tempo;
 
@@ -25,9 +29,6 @@ namespace Sky.GroundPound
         {
             get
             {
-                if (!Application.isPlaying)
-                    return null;
-
                 if (!m_Instance)
                 {
                     Initialize();

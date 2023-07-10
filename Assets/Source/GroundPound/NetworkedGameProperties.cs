@@ -8,6 +8,9 @@ namespace Sky.GroundPound
     [AddComponentMenu("Ground Pound/Networked Game Properties")]
     public class NetworkedGameProperties : NetworkBehaviour
     {
+        [Networked, Capacity(Game.MaxRoomSize)]
+        public NetworkArray<PlayerInformation> Players => default;
+
         private static NetworkedGameProperties m_Instance;
         public static NetworkedGameProperties Instance
         {
@@ -22,6 +25,32 @@ namespace Sky.GroundPound
 
         [Networked] public int TeamCount { get; set; }
         List<int> UniqueTeams = new List<int>();
+
+        public void TryRegisterPlayer(PlayerRef Player, long DiscordID)
+        {
+            RPC_TryRegisterPlayer(new PlayerInformation(Player, DiscordID));
+        }
+
+        public void TryRegisterPlayer(PlayerInformation Player)
+        {
+            RPC_TryRegisterPlayer(Player);
+        }
+
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+        protected void RPC_TryRegisterPlayer(PlayerInformation Player)
+        {
+            if (!Object.HasStateAuthority) // Just in-case someone somehow bypasses the Targeter
+                return;
+
+            for (int I = 0; I < Game.MaxRoomSize; I++)
+            {
+                if (Players.Get(I).DiscordUserID == 0) 
+                {
+                    Players.Set(I, Player);
+                    return;
+                }
+            }
+        }
 
         public override void FixedUpdateNetwork()
         {
