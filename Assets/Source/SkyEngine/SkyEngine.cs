@@ -627,6 +627,9 @@ namespace SkySoft
             OnComplete();
         }
 
+        private static string RichPresenceMajor;
+        private static string RichPresenceMinor;
+
         public static void SetRichPresence(string MajorText, string MinorText, bool UseFile = false, PlayerFile File = null)
         {
             try
@@ -637,6 +640,31 @@ namespace SkySoft
                 if (Properties.EnableSteam)
                     Steam.Steamhook.SetRichPresence($"{MajorText}{(string.IsNullOrEmpty(MinorText) ? "" : $" - {MinorText}")}");
             } catch (System.Exception Ex) { Debug.LogError(Ex); }
+        }
+
+        public static void SetLobbyDetails(string LobbySecret, int PublicityLevel, int PlayerCount, int LobbySize)
+        {
+            if (Properties.EnableDiscord)
+            {
+                switch (PublicityLevel)
+                {
+                    case 0: // JoinOffEveryone
+                        {
+                            Discord.DiscordAPI.UpdateLobby(RichPresenceMinor, RichPresenceMajor, LobbySecret, PlayerCount, LobbySize);
+                        }
+                        break;
+                    case 1: // JoinOffHostOnly
+                        {
+
+                        }
+                        break;
+                    case 2: // JoinByInvite
+                        {
+
+                        }
+                        break;
+                }
+            }
         }
 
         public static void SpawnLootBag(Vector3 Position, int Currency = 0, params ItemStack[] Items)

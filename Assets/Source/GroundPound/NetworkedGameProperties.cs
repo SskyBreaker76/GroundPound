@@ -1,4 +1,6 @@
 using Fusion;
+using SkySoft;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +28,22 @@ namespace Sky.GroundPound
         [Networked] public int TeamCount { get; set; }
         List<int> UniqueTeams = new List<int>();
 
+        [Networked] public int m_JoinType { get; set; }
+        public MatchMaker.LobbyPublicity JoinType
+        {
+            get
+            {
+                return (MatchMaker.LobbyPublicity)m_JoinType;
+            }
+            set
+            {
+                if (!Object.HasStateAuthority)
+                    return;
+
+                m_JoinType = (int)value;
+            }
+        }
+
         public void TryRegisterPlayer(PlayerRef Player, long DiscordID)
         {
             RPC_TryRegisterPlayer(new PlayerInformation(Player, DiscordID));
@@ -47,9 +65,43 @@ namespace Sky.GroundPound
                 if (Players.Get(I).DiscordUserID == 0) 
                 {
                     Players.Set(I, Player);
+                    RPC_SendJoinLeaveMessage(Player.DiscordUserID, false);
                     return;
                 }
             }
+        }
+
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        protected void RPC_SendJoinLeaveMessage(long PlayerID, bool Left)
+        {
+            if (Left)
+                MatchMaker.OnPlayerHasLeft(PlayerID);
+            else
+                MatchMaker.OnPlayerHasJoined(PlayerID);
+
+            MatchMaker.OnPlayerCountChanged();
+        }
+
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        public void RPC_MatchStartInitiated()
+        {
+            MatchMaker.OnMatchStartInitiated();
+        }
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        public void RPC_MatchStartCancelled()
+        {
+            MatchMaker.OnMatchStartCancelled();
+        }
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        public void RPC_MatchStartTick(int Tick)
+        {
+            MatchMaker.OnMatchStartTick(Tick);
+        }
+
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        public void RPC_DisableMatchJoining()
+        {
+            SkyEngine.SetRichPresence("Online", "In a game...");
         }
 
         public override void FixedUpdateNetwork()

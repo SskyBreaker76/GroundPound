@@ -26,11 +26,20 @@ namespace Sky.GroundPound
         [SceneReference, Tooltip("This is very temporary")] public string StartLevel;
         public UnityEvent OnHostStarted;
         public UnityEvent OnHostSuccess;
+        public UnityEvent OnJoinStarted;
+        public UnityEvent OnJoinSuccess;
 
         public void StartGame()
         {
             OnHostStarted.Invoke();
-            MatchMaker.Instance.StartGame(Fusion.GameMode.Host, OnHostSuccess.Invoke);
+            MatchMaker.Instance.StartGame(Fusion.GameMode.Host, MatchMaker.LobbyPublicity.JoinOffEveryone, OnHostSuccess.Invoke);
+        }
+
+        private void JoinThroughDiscord(string Secret)
+        {
+            string[] Parts = Secret.Split();
+            OnJoinStarted.Invoke();
+            MatchMaker.Instance.StartGame(Fusion.GameMode.Client, MatchMaker.LobbyPublicity.JoinOffEveryone, OnJoinSuccess.Invoke);
         }
 
         public void LoadLevel()
@@ -47,6 +56,8 @@ namespace Sky.GroundPound
 
             while (!DiscordAPI.Initialized)
                 await Task.Delay(10);
+
+            DiscordAPI.ActivityManager.OnActivityJoin += JoinThroughDiscord;
 
             Game.Initialize(128, () =>
             {

@@ -400,7 +400,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
@@ -408,6 +408,69 @@ TextureImporter:
       bones: []
       spriteID: 289b9e640900fc84b854133cb2d260d4
       internalID: -1567162146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActivityOnline
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 410
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 827d99fa8526d4048bd1115ccfcfbe6c
+      internalID: -814571916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ActivityIdle
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 410
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5dda5883fbaa8845be536fb1ecf6844
+      internalID: -161417959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AcitivityDoNotDiscturb
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 404
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9ac6c856e082ff448542e4ff0928035
+      internalID: -1727448767
       vertices: []
       indices: 
       edges: []
@@ -423,6 +486,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      AcitivityDoNotDiscturb: -1727448767
+      ActivityIdle: -161417959
+      ActivityOnline: -814571916
       ButtonDark: -1166801285
       ButtonLight: 555482
       ButtonNormal: 430325755

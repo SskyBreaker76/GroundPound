@@ -32,9 +32,11 @@ namespace SkySoft.Discord
                 return m_LocalUserID;
             }
         }
-        private static global::Discord.Discord Discord;
-        private static ActivityManager ActivityManager;
+        public static global::Discord.Discord Discord;
+        public static ActivityManager ActivityManager;
         public static UserManager UserManager;
+        public static RelationshipManager RelationshipManager;
+        public static OverlayManager OverlayManager;
 
         public static void GetAvatar(User User, Action<Texture2D> OnComplete, Action<string> OnFailed = null, int Resolution = 512)
         {
@@ -91,7 +93,7 @@ namespace SkySoft.Discord
 
         private static bool HasDiscord;
 
-        public static async void Initialize()
+        public static void Initialize()
         {
             if (!SkyEngine.Properties.EnableDiscord)
                 return;
@@ -104,6 +106,8 @@ namespace SkySoft.Discord
 
                     ActivityManager = Discord.GetActivityManager();
                     UserManager = Discord.GetUserManager();
+                    RelationshipManager = Discord.GetRelationshipManager();
+                    OverlayManager = Discord.GetOverlayManager();
 
                     if (SkyEngine.Properties.EnableSteam)
                         ActivityManager.RegisterSteam(Steamhook.AppID);
@@ -134,9 +138,7 @@ namespace SkySoft.Discord
         public static void UpdateActivity(string State, string Details, bool SkipInit = false, string PlayerDetails = "")
         {
             if (!SkipInit)
-            {
                 Initialize();
-            }
 
             if (HasDiscord)
             {
@@ -159,6 +161,50 @@ namespace SkySoft.Discord
                     });
                 }
                 catch { }
+            }
+        }
+
+        public static void UpdateLobby(string State, string Details, string JoinSecret, int PartySize, int PartyMax, bool SkipInit = false)
+        {
+            if (!SkipInit)
+                Initialize();
+
+            if (HasDiscord)
+            {
+                Activity NewActivity = new Activity
+                {
+                    State = State,
+                    Details = Details,
+                    Assets =
+                    {
+                        LargeImage = "iconlarge"
+                    },
+                    Party =
+                    {
+                        Id = JoinSecret,
+                        Size =
+                        {
+                            CurrentSize = PartySize,
+                            MaxSize = PartyMax
+                        }
+                    },
+                    Secrets = PartySize < PartyMax 
+                    ? new ActivitySecrets // Player can join, create lobby secrets
+                    {
+                        Join = $"{JoinSecret} p",
+                        Spectate = $"{JoinSecret} s",
+                        Match = JoinSecret
+                    } 
+                    : default // Player can't join, use default (empty) secrets
+                };
+
+                try
+                {
+                    ActivityManager.UpdateActivity(NewActivity, Result =>
+                    {
+                        Debug.Log($"UpdateActivity() returned with result: {Result}");
+                    });
+                } catch { }
             }
         }
 
